@@ -1,0 +1,363 @@
+<!--
+  ==========================================================================
+  DESAFIO — DESENVOLVIMENTO WEB I (2º PERÍODO) — "RESGATE DA SMARTWEB"
+  Faculdade Senac AM – FATESE | Prof. João Marcos Aires Duarte
+  ==========================================================================
+
+  CONTEXTO
+  A SmartWeb Informática contratou um "sobrinho que mexe com computador"
+  para fazer o site da loja. O resultado está neste arquivo: a página
+  abre, mas quase nada funciona, não é acessível, não é responsiva e
+  ignora praticamente todas as boas práticas estudadas na apostila.
+
+  Sua equipe foi contratada para RESGATAR o site.
+
+  MISSÃO
+  1. Fazer o site FUNCIONAR:
+     - as abas (A empresa, Produtos, Contato, Perguntas frequentes)
+       devem alternar o conteúdo exibido;
+     - o catálogo deve exibir os 12 produtos, com busca e filtro por linha;
+     - "Adicionar ao pedido" deve somar itens e o total corretamente;
+     - o formulário de contato deve validar nome, e-mail e mensagem,
+       exibindo os erros AO LADO DE CADA CAMPO (nada de alert);
+     - as perguntas frequentes devem abrir e fechar por clique E teclado.
+  2. Aplicar as BOAS PRÁTICAS da apostila em todo o arquivo:
+     - Unidade 1 e 2 (HTML5): doctype, lang, charset, viewport, semântica,
+       hierarquia de títulos, formulários com <label>, alt em imagens,
+       tabelas apenas para dados.
+     - Unidade 3 (CSS3): separação de responsabilidades, especificidade,
+       box-sizing, Flexbox/Grid, mobile-first, unidades relativas (rem),
+       variáveis CSS, sem abuso de !important.
+     - Unidade 5 (Acessibilidade): contraste mínimo 4.5:1, foco visível,
+       operação por teclado, ARIA apenas quando necessário, aria-live,
+       prefers-reduced-motion, informação que não dependa só de cor.
+     - Unidade 6 e 8 (JavaScript): const/let, addEventListener (nada de
+       onclick no HTML), comparação estrita, textContent em vez de
+       innerHTML com dados do usuário, alternância de CLASSES (não de
+       element.style), sem alert(), sem document.write, sem eval.
+
+  REGRAS
+  - Não altere os textos, produtos, preços nem os contatos da loja.
+  - Pode reorganizar o código livremente (inclusive separar em
+    index.html, estilos.css e app.js — isso conta pontos).
+  - Não use frameworks (nada de Bootstrap, Tailwind ou Vue neste desafio).
+  - Cada correção deve ser registrada em um commit com mensagem descritiva
+    (Unidade 1 — Conventional Commits: fix:, refactor:, feat:, style:).
+
+  ENTREGA
+  - Repositório no GitHub com o arquivo corrigido e um README.md contendo
+    uma TABELA "Problema encontrado | Unidade da apostila | Como corrigi".
+  - Relatório do Lighthouse (aba Acessibilidade) ANTES e DEPOIS.
+  - Validação sem erros no W3C Markup Validation Service.
+
+  AVALIAÇÃO (peso indicativo)
+  - Site funcionando (abas, catálogo, pedido, formulário, FAQ) ......... 30%
+  - HTML5 semântico e válido ........................................ 20%
+  - CSS3 organizado, responsivo (mobile-first) ...................... 20%
+  - Acessibilidade (teclado, contraste, foco, leitor de tela) ....... 20%
+  - Tabela de problemas no README + histórico de commits ............ 10%
+
+  DICA: abra o DevTools (F12) > Console. O primeiro erro que aparece NÃO
+  é o único. Corrija um, recarregue, e o próximo vai surgir.
+  ==========================================================================
+-->
+<html>
+<head>
+<title>site</title>
+
+<script type="text/javascript">
+// ****** SCRIPT DO SITE ******* NAO MEXER!!!!
+
+var produtos = [
+  {nome: "Notebook Pro 14\", i5, 16 GB, SSD 512 GB", sku: "NB-PRO14", linha: "comp", preco: "4290", desc: "Tela Full HD, teclado com numérico reduzido e bateria para o dia todo."},
+  {nome: "Desktop Office, i5, 8 GB, SSD 256 GB", sku: "DT-OFFICE", linha: "comp", preco: "2890", desc: "Torre compacta para caixa e atendimento, com Windows 11 Pro."},
+  {nome: "Mini PC Compacto, Ryzen 5, 16 GB", sku: "MP-R5", linha: "comp", preco: "2390", desc: "Cabe atrás do monitor e gasta pouca energia. Ideal para recepção."},
+  {nome: "Monitor 24\" Full HD IPS", sku: "MN-24IPS", linha: "comp", preco: "849", desc: "Ângulo de visão aberto, entradas HDMI e DisplayPort, base ajustável."},
+  {nome: "Switch gerenciável Gigabit, 24 portas", sku: "SW-GER24", linha: "rede", preco: "1690", desc: "VLANs, controle de banda e portas sobrando para a empresa crescer."},
+  {nome: "Access Point Wi-Fi 6 de teto", sku: "AP-W6T", linha: "rede", preco: "780", desc: "Rede separada para visitantes e alimentação pelo cabo de rede (PoE)."},
+  {nome: "Roteador dual WAN com VLAN", sku: "RT-DWAN", linha: "rede", preco: "620", desc: "Dois links de internet com troca automática se um cair."},
+  {nome: "Cabo CAT6, caixa com 305 m", sku: "CB-CAT6-305", linha: "rede", preco: "690", desc: "Par trançado para pontos de rede Gigabit, com capa antichama."},
+  {nome: "NAS de 2 baias", sku: "NAS-2B", linha: "prot", preco: "2190", desc: "Compartilha arquivos e faz backup automático. Discos vendidos à parte."},
+  {nome: "Nobreak senoidal 1500 VA", sku: "UPS-1500S", linha: "prot", preco: "2450", desc: "Energia limpa para servidor e switch, com proteção contra queima."},
+  {nome: "SSD NVMe 1 TB", sku: "SSD-NV1T", linha: "prot", preco: "520", desc: "Troca o disco antigo e deixa o computador bem mais rápido."},
+  {nome: "HD externo 2 TB, USB 3.0", sku: "HD-EXT2T", linha: "prot", preco: "489", desc: "Segunda mídia local para a cópia de segurança diária."}
+]
+
+var carrinho = []
+var linhaAtual = "todas"
+var total
+
+function mostraAba(aba) {
+  document.getElementById("empresa").style.display = "none"
+  document.getElementById("produto").style.display = "none"
+  document.getElementById("contato").style.display = "none"
+  document.getElementById("faq").style.display = "none"
+  document.getElementById(aba).style.display = "block"
+}
+
+function montaCatalogo() {
+  var html = ""
+  for (var i = 0; i <= produtos.length; i++) {
+    if (linhaAtual = "todas" || produtos[i].linha == linhaAtual) {
+      html = html + "<div class='card' style='float:left;width:240px;height:330px;margin:5px;border:1px solid #eee'>"
+      html = html + "<img src='produto" + i + ".png' width='120'>"
+      html = html + "<font size='1' color='#ccc'>" + produtos[i].sku + "</font><br>"
+      html = html + "<h4>" + produtos[i].nome + "</h4>"
+      html = html + "<font size='2' color='#bbb'>" + produtos[i].desc + "</font><br><br>"
+      html = html + "<b style='font-size:20px'>R$ " + produtos[i].preco + "</b><br>"
+      html = html + "<div class='botao' onclick='adiciona(" + i + ")'>Adicionar ao pedido</div>"
+      html = html + "</div>"
+    }
+  }
+  document.getElementById("catalogo").innerHtml = html
+}
+
+function filtra(l) {
+  linhaAtual == l
+  montaCatalogo()
+}
+
+function busca() {
+  var termo = document.getElementById("busca").value
+  document.getElementById("resultadoBusca").innerHTML = "Você buscou por: <b>" + termo + "</b>"
+  for (i = 0; i < produtos.length; i++) {
+    if (produtos[i].nome.indexOf(termo) > 0) {
+      document.getElementById("catalogo").innerHTML = produtos[i].nome
+    }
+  }
+}
+
+function adiciona(i) {
+  carrinho.push(produtos[i])
+  for (var j = 0; j < carrinho.length; j++) {
+    total = total + carrinho[j].preco
+  }
+  document.getElementById("qtd").innerHTML = carrinho.length
+  document.getElementById("total").innerHTML = "R$ " + total
+  alert("PRODUTO ADICIONADO COM SUCESSO!!!!!")
+}
+
+function limpar() {
+  carrinho = ""
+  document.getElementById("total").innerHTML = ""
+}
+
+function enviar() {
+  var nome = document.getElementById("nome").value
+  var email = document.getElemetById("email").value
+  var msg = document.getElementById("msg").value
+  if (nome == "") {
+    alert("ERRO!!!")
+  }
+  if (email.indexOf("@") = -1) {
+    alert("ERRO NO EMAIL")
+  }
+  if (msg == "") alert("ERRO")
+  document.getElementById("resultado").innerHTML = "Nome: " + nome + "<br>Email: " + email + "<br>Mensagem: " + msg
+}
+
+function copiar(id) {
+  document.execCommand("copy")
+  alert("copiado")
+}
+
+window.onload = montaCatalogo()
+</script>
+
+<style>
+* { margin: 0; padding: 0; outline: none !important; }
+body { width: 1100px; font-family: "Comic Sans MS", cursive; font-size: 13px; color: #999; background: #fff; }
+#topo { background: #0a62a8; height: 90px; }
+div#topo table tr td div.logo span b { font-size: 30px !important; color: #3b7fc0 !important; }
+.aba { float: left; width: 250px; padding: 15px; background: #eee; color: #ccc; cursor: pointer; }
+.aba:hover { background: #0a62a8; color: #3b7fc0; }
+.botao { background: #ffeb3b; color: #fff; padding: 8px; text-align: center; cursor: pointer; width: 200px; }
+.botao:hover { background: #ffd600 !important; }
+h1 { font-size: 40px; color: #ddd; }
+h1 { font-size: 22px !important; }
+.titulo { font-size: 18px !important; color: #aaa !important; }
+#produtos .card h4 { color: #aaa; font-size: 14px; }
+.card h4 { color: #000 !important; }
+.piscar { animation: pisca 0.4s infinite; }
+@keyframes pisca { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
+.verde { width: 10px; height: 10px; background: green; display: inline-block; }
+.vermelho { width: 10px; height: 10px; background: red; display: inline-block; }
+.resposta { display: none; color: #ccc; }
+input, textarea { border: 1px solid #f5f5f5; width: 300px; height: 30px; color: #ccc; }
+@media (max-width: 1200px) { #menu { display: none; } }
+</style>
+</head>
+
+<body bgcolor="white">
+
+<div id="topo">
+  <table width="1100" border="0" cellpadding="0" cellspacing="0">
+    <tr>
+      <td width="80"><img src="logo.png" width="60" height="60"></td>
+      <td><div class="logo"><span><b>SmartWeb</b></span><br><font size="1" color="#5d8fbf">INFORMÁTICA E REDES</font></div></td>
+      <td align="right"><div onclick="mostraAba('produtos')" style="color:#3b7fc0;cursor:pointer">Meu pedido (<span id="qtd">0</span>)</div></td>
+    </tr>
+  </table>
+</div>
+
+<div id="menu">
+  <div class="aba" onclick="mostraAba('empresa')">A empresa</div>
+  <div class="aba" onclick="mostraAba('produtos')">Produtos</div>
+  <div class="aba" onclick="mostraAba('contato')">Contato</div>
+  <div class="aba" onclick="mostraAba('faq')">Perguntas frequentes</div>
+</div>
+<br><br><br><br>
+
+<!-- EMPRESA -->
+<div id="empresa">
+  <marquee><font color="red" class="piscar">*** PROMOÇÃO IMPERDÍVEL ***</font></marquee>
+  <font size="1" color="#ccc">LOJA DE INFORMÁTICA E INFRAESTRUTURA DE REDE</font>
+  <h1>Equipamento certo para a sua empresa funcionar amanhã cedo.</h1>
+  <br>
+  <font color="#bbb">A SmartWeb vende computadores, redes e proteção de dados para pequenas e médias empresas. Indicamos o que o seu negócio usa de verdade e deixamos o resto de fora.</font>
+  <br><br>
+  <div class="botao" style="float:left" onclick="mostraAba('produtos')">Ver produtos</div>
+  <div class="botao" style="float:left;margin-left:10px;background:#fff;color:#ffeb3b;border:1px solid #ffeb3b" onclick="mostraAba('contato')">Pedir orçamento</div>
+  <br><br><br>
+
+  <img src="switch-24-portas.jpg" width="1100" height="120">
+  <br>
+  Status das portas: <span class="verde"></span> <span class="verde"></span> <span class="vermelho"></span> <span class="verde"></span> <span class="vermelho"></span>
+  <br><br>
+
+  <table width="100%" border="0">
+    <tr>
+      <td width="220" valign="top"><font size="1" color="#ccc">QUEM SOMOS</font></td>
+      <td>
+        A SmartWeb é uma loja de informática voltada ao comércio e aos escritórios. Vendemos pela internet e também montamos a rede interna do cliente, do cabo ao backup.<br><br>
+        <font color="#ccc">Trabalhamos com linhas para empresas (SMB), que trazem controle de banda, segmentação por VLAN e garantia de balcão. Equipamento doméstico fica fora do catálogo de redes.</font>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><font size="1" color="#ccc">O QUE VENDEMOS</font></td>
+      <td>
+        <table width="100%" border="1" cellpadding="10">
+          <tr>
+            <td><h1>Computadores e notebooks</h1>Máquinas de trabalho para balcão, escritório e home office, com monitor e mini PC.</td>
+            <td><h1>Redes e conectividade</h1>Switches, Wi-Fi corporativo, roteadores e cabeamento CAT6.</td>
+            <td><h1>Armazenamento e proteção</h1>NAS, nobreak senoidal, SSD e discos externos para backup.</td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><font size="1" color="#ccc">COMO TRABALHAMOS</font></td>
+      <td>
+        <h5>Rede com folga de 30% a 50%</h5>
+        Eletrocalhas com espaço livre e switches com portas sobrando, para contratar gente sem trocar equipamento.<br><br>
+        <h5>Tudo documentado</h5>
+        Entregamos o mapa de cabeamento, a tabela de IPs e as senhas de administração ao dono da empresa.<br><br>
+        <h5>Servidor do tamanho da necessidade</h5>
+        Servidor de entrada para domínio e aplicações, ou NAS quando o uso é guardar e compartilhar arquivos.<br><br>
+        <h5>Backup 3-2-1</h5>
+        Três cópias dos dados, duas mídias locais diferentes e uma cópia criptografada na nuvem.
+      </td>
+    </tr>
+    <tr>
+      <td valign="top"><font size="1" color="#ccc">ATENDIMENTO</font></td>
+      <td>
+        Segunda a sexta &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8h às 18h<br>
+        Sábado &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8h às 12h<br>
+        Pedidos pelo site &nbsp;&nbsp;&nbsp; Recebidos todos os dias
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- PRODUTOS -->
+<div id="produtos" style="display:none">
+  <input type="text" id="busca" placeholder="buscar..." onkeyup="busca()">
+  <span onclick="filtra('todas')" style="cursor:pointer;color:#ccc">Todas as linhas</span> |
+  <span onclick="filtra('comp')" style="cursor:pointer;color:#ccc">Computadores e notebooks</span> |
+  <span onclick="filtra('rede')" style="cursor:pointer;color:#ccc">Redes e conectividade</span> |
+  <span onclick="filtra('prot')" style="cursor:pointer;color:#ccc">Armazenamento e proteção</span>
+  <div id="resultadoBusca"></div>
+  <br>
+  <div id="catalogo"></div>
+  <div style="clear:both"></div>
+
+  <div id="pedido" style="border:1px solid #eee;padding:10px;margin-top:20px">
+    <h1>Meu pedido</h1>
+    Total: <span id="total" style="color:green"></span>
+    <br><br>
+    <div class="botao" onclick="mostraAba('contato')">Solicitar pedido</div>
+    <div class="botao" onclick="limpar()" style="background:#eee">Limpar</div>
+  </div>
+</div>
+
+<!-- CONTATO -->
+<div id="contato" style="display:none">
+  <h1>Fale com a SmartWeb</h1>
+  <font color="#ccc">Dúvidas, orçamentos e pedidos.</font>
+  <br><br>
+  <table width="100%">
+    <tr>
+      <td valign="top">
+        <form>
+          <input type="text" id="nome" placeholder="Nome"><br><br>
+          <input type="text" id="email" placeholder="Email"><br><br>
+          <select id="assunto">
+            <option>Orçamento</option>
+            <option>Pedido de compra</option>
+            <option>Projeto de rede</option>
+            <option>Suporte e garantia</option>
+            <option>Outro assunto</option>
+          </select><br><br>
+          <textarea id="msg" placeholder="Mensagem"></textarea><br><br>
+          <button onclick="enviar()" class="botao">Montar mensagem</button>
+        </form>
+        <div id="resultado" style="color:#ccc"></div>
+      </td>
+      <td valign="top">
+        <font size="1" color="#ccc">WHATSAPP</font><br>
+        <span id="c-wa">(51) 99000-0000</span> <span onclick="copiar('c-wa')" style="color:#ffeb3b;cursor:pointer">[copiar]</span><br><br>
+        <font size="1" color="#ccc">TELEFONE</font><br>
+        <span id="c-wa">(51) 3000-0000</span> <span onclick="copiar('c-tel')" style="color:#ffeb3b;cursor:pointer">[copiar]</span><br><br>
+        <font size="1" color="#ccc">E-MAIL</font><br>
+        <span id="c-mail">contato@SmartWebinformatica.com.br</span> <span onclick="copiar('c-mail')" style="color:#ffeb3b;cursor:pointer">[copiar]</span><br><br>
+        <font color="#ccc">Respondemos em até um dia útil. Para projeto de rede, informe quantos computadores, impressoras e pontos de Wi-Fi a empresa tem hoje.</font>
+      </td>
+    </tr>
+  </table>
+</div>
+
+<!-- FAQ -->
+<div id="faq" style="display:none">
+  <h1>Perguntas frequentes</h1>
+
+  <h6 onmouseover="this.nextSibling.style.display='block'" onmouseout="this.nextSibling.style.display='none'">Como faço um pedido?</h6>
+  <div class="resposta">Na aba Produtos, adicione os itens ao pedido e clique em Solicitar pedido. A mensagem já sai com a lista e o total. Depois é só enviá-la pelo WhatsApp ou pelo e-mail da loja.</div>
+
+  <h6 onmouseover="this.nextSibling.style.display='block'" onmouseout="this.nextSibling.style.display='none'">Quais são as formas de pagamento?</h6>
+  <div class="resposta">Pix, boleto, cartão de crédito em até 10 vezes e faturamento para empresas com cadastro aprovado.</div>
+
+  <h6 onmouseover="this.nextSibling.style.display='block'" onmouseout="this.nextSibling.style.display='none'">Qual é o prazo de entrega?</h6>
+  <div class="resposta">Itens em estoque saem em até 2 dias úteis. Equipamentos de rede sob encomenda levam de 5 a 10 dias úteis, e avisamos o prazo no orçamento.</div>
+
+  <h6 onmouseover="this.nextSibling.style.display='block'" onmouseout="this.nextSibling.style.display='none'">Os produtos têm garantia e nota fiscal?</h6>
+  <div class="resposta">Sim. Todos os produtos têm nota fiscal e garantia do fabricante. Equipamentos de linha empresarial costumam ter garantia estendida, informada na página de cada item.</div>
+
+  <h6 onmouseover="this.nextSibling.style.display='block'" onmouseout="this.nextSibling.style.display='none'">Vocês instalam a rede da minha empresa?</h6>
+  <div class="resposta">Fazemos o projeto, o cabeamento e a configuração. A entrega inclui o mapa de cabeamento, a tabela de endereços IP e as senhas dos equipamentos.</div>
+
+  <h6 onmouseover="this.nextSibling.style.display='block'" onmouseout="this.nextSibling.style.display='none'">Qual servidor eu devo comprar?</h6>
+  <div class="resposta">Depende do uso. Para guardar arquivos e fazer backup, um NAS atende bem e gasta menos energia. Para controle de domínio ou sistemas de gestão, indicamos um servidor em torre de entrada.</div>
+
+  <h6 onmouseover="this.nextSibling.style.display='block'" onmouseout="this.nextSibling.style.display='none'">Posso trocar um produto?</h6>
+  <div class="resposta">Compras feitas pelo site podem ser devolvidas em até 7 dias corridos após o recebimento, com o produto lacrado e sem uso.</div>
+</div>
+
+<br><br><br>
+<div class="rodape" style="background:#f9f9f9;padding:20px;color:#ddd;font-size:10px">
+  <center>
+    <script>document.write("© " + new Date().getFullYear())</script> SmartWeb Informática. Site desenvolvido por Baré Tech Sistemas S.A. Produtos, preços e contatos são exemplos.
+  </center>
+</div>
+
+</body>
+</html>

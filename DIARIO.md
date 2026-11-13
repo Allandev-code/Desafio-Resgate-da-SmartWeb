@@ -17,3 +17,20 @@ Durante a correção do JavaScript, ficou claro como a ordem de execução do c�
 
 ### Reflexão da Etapa 3
 Na Etapa 3, a refatoração das funcionalidades mostrou a importância de modernizar o código. A substituição de práticas antigas e bloqueantes (como os `alert()` invasivos no formulário) por validações dinâmicas injetadas diretamente no DOM melhorou drasticamente a experiência do usuário. Sem deixar de falar que a troca de eventos como `onmouseover` por eventos de `click` no FAQ tornou a interface muito mais acessível e profissional, permitindo que qualquer pessoa consiga interagir com o conteúdo de forma clara.
+
+### Respostas às Perguntas-guia (Etapa 3)
+
+* **Qual é o tipo de cada valor que o código soma ou compara? O JavaScript está comparando ou atribuindo? (seção 6.2):** 
+Os valores somados no carrinho (preços) precisam ser do tipo `Number` (no código original, o erro de lógica somava valores indefinidos ou concatenava texto, gerando `NaN`). Além disso, no código original, o `if` do filtro estava fazendo uma atribuição (usando `=`) em vez de uma comparação de igualdade estrita (usando `===`), o que causava falhas na lógica de filtragem.
+
+* **Os laços percorrem exatamente os itens da lista, nem um a mais, nem um a menos?:** 
+No código original não, pois o laço `for` utilizava a condição `<= produtos.length`, o que forçava a leitura de um item a mais (inexistente), causando o erro fatal `TypeError: Cannot read properties of undefined`. Na nossa refatoração, passámos a usar os métodos `filter()` e `forEach()`, que iteram com precisão matemática apenas sobre os itens reais da lista.
+
+* **Os identificadores usados no JavaScript existem no HTML, exatamente com a mesma grafia, e são únicos?:** 
+Sim, identificadores como `"catalogo"`, `"busca"` e `"resultado"` são atributos `id` únicos no HTML. Agora o JavaScript passa a se referenciar com a grafia exata, e resolvemos falhas de sintaxe anteriores (como a propriedade `innerHTML`, que estava mal capitalizada no original).
+
+* **O que acontece com um formulário quando um botão é acionado dentro dele? (seções 6.5 e 8.3):** 
+O comportamento padrão do navegador é submeter o formulário e recarregar a página imediatamente. Isso faz com que todo o estado do JavaScript (como o carrinho de compras) seja perdido. Para resolver isto, adicionámos `evento.preventDefault()` na função do formulário, interceptando o envio e validando via DOM.
+
+* **O elemento que o código chama de 'próximo' é realmente o que você imagina? Verifique na aba Elements.:** 
+Na navegação do DOM (como no nosso FAQ), chamar apenas o "próximo nó" pode capturar simplesmente espaços em branco ou quebras de linha invisíveis no HTML. Para contornar isto, utilizámos `nextElementSibling` no JavaScript, garantindo que o elemento alvo a ser aberto/fechado é, de facto, a tag HTML que contém a resposta.

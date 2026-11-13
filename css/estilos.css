@@ -111,3 +111,55 @@ input, textarea {
 @media (max-width: 1200px) { 
     #menu { display: none; } 
 }
+
+/* Classes Semânticas que substituíram as tags <font> e <marquee> */
+.texto-azul-pequeno { 
+    font-size: 10px; 
+    color: #5d8fbf; 
+}
+
+.texto-cinza-pequeno { 
+    font-size: 10px; 
+    color: #ccc; 
+    display: block; 
+    text-transform: uppercase; 
+    font-weight: bold; 
+}
+
+.texto-descritivo { 
+    color: #bbb; 
+}
+
+.texto-cinza-claro { 
+    color: #ccc; 
+}
+
+.alerta-promocao { 
+    color: red; 
+    font-weight: bold; 
+    padding: 10px 0; 
+}
+
+.link-filtro { 
+    cursor: pointer; 
+    color: #ccc; 
+}
+
+.btn-copiar { 
+    color: #ffeb3b; 
+    cursor: pointer; 
+    font-size: 12px; 
+}
+
+.btn-orcamento { 
+    float: left; 
+    margin-left: 10px; 
+    background: #fff; 
+    color: #ffeb3b; 
+    border: 1px solid #ffeb3b; 
+}
+
+.btn-limpar { 
+    background: #eee; 
+    color: #999; 
+}

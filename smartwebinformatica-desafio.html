@@ -190,16 +190,24 @@
     <div class="grid-contato">
       <div>
         <form>
+          <label for="nome" class="leitor-ecra">Nome completo</label>
           <input type="text" id="nome" placeholder="Nome"><br><br>
-          <input type="text" id="email" placeholder="Email"><br><br>
-          <select id="assunto" aria-label="Assunto do contato">
+          
+          <label for="email" class="leitor-ecra">Endereço de e-mail</label>
+          <input type="email" id="email" placeholder="Email"><br><br>
+          
+          <label for="assunto" class="leitor-ecra">Selecione o assunto</label>
+          <select id="assunto">
             <option>Orçamento</option>
             <option>Pedido de compra</option>
             <option>Projeto de rede</option>
             <option>Suporte e garantia</option>
             <option>Outro assunto</option>
           </select><br><br>
+          
+          <label for="msg" class="leitor-ecra">Sua mensagem</label>
           <textarea id="msg" placeholder="Mensagem"></textarea><br><br>
+          
           <button onclick="enviar(event)" class="botao">Montar mensagem</button>
         </form>
         <div id="resultado" class="texto-cinza-claro"></div>
@@ -252,6 +260,7 @@
   </div>
 </footer>
 
-<script src="js/app.js"></script> 
+<script src="js/app.js"></script>
+ 
 </body>
 </html>

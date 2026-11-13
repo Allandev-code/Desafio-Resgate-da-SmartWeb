@@ -61,40 +61,22 @@
   é o único. Corrija um, recarregue, e o próximo vai surgir.
   ==========================================================================
 -->
-<html>
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-<title>site</title>
-
-<style>
-* { margin: 0; padding: 0; outline: none !important; }
-body { width: 1100px; font-family: "Comic Sans MS", cursive; font-size: 13px; color: #999; background: #fff; }
-#topo { background: #0a62a8; height: 90px; }
-div#topo table tr td div.logo span b { font-size: 30px !important; color: #3b7fc0 !important; }
-.aba { float: left; width: 250px; padding: 15px; background: #eee; color: #ccc; cursor: pointer; }
-.aba:hover { background: #0a62a8; color: #3b7fc0; }
-.botao { background: #ffeb3b; color: #fff; padding: 8px; text-align: center; cursor: pointer; width: 200px; }
-.botao:hover { background: #ffd600 !important; }
-h1 { font-size: 40px; color: #ddd; }
-h1 { font-size: 22px !important; }
-.titulo { font-size: 18px !important; color: #aaa !important; }
-#produtos .card h4 { color: #aaa; font-size: 14px; }
-.card h4 { color: #000 !important; }
-.piscar { animation: pisca 0.4s infinite; }
-@keyframes pisca { 0% { opacity: 1; } 50% { opacity: 0; } 100% { opacity: 1; } }
-.verde { width: 10px; height: 10px; background: green; display: inline-block; }
-.vermelho { width: 10px; height: 10px; background: red; display: inline-block; }
-.resposta { display: none; color: #ccc; }
-input, textarea { border: 1px solid #f5f5f5; width: 300px; height: 30px; color: #ccc; }
-@media (max-width: 1200px) { #menu { display: none; } }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>site</title>
+  <!-- Ligação para o novo ficheiro CSS -->
+  <link rel="stylesheet" href="/css/estilos.css">
 </head>
 
-<body bgcolor="white">
+<body style="background-color: white;">
 
 <div id="topo">
   <table width="1100" border="0" cellpadding="0" cellspacing="0">
     <tr>
-      <td width="80"><img src="logo.png" width="60" height="60"></td>
+      <td width="80"><img src="logo.png" width="60" height="60" alt="Logo da SmartWeb"></td>
       <td><div class="logo"><span><b>SmartWeb</b></span><br><font size="1" color="#5d8fbf">INFORMÁTICA E REDES</font></div></td>
       <td align="right"><div onclick="mostraAba('produtos')" style="color:#3b7fc0;cursor:pointer">Meu pedido (<span id="qtd">0</span>)</div></td>
     </tr>
@@ -121,7 +103,7 @@ input, textarea { border: 1px solid #f5f5f5; width: 300px; height: 30px; color: 
   <div class="botao" style="float:left;margin-left:10px;background:#fff;color:#ffeb3b;border:1px solid #ffeb3b" onclick="mostraAba('contato')">Pedir orçamento</div>
   <br><br><br>
 
-  <img src="switch-24-portas.jpg" width="1100" height="120">
+  <img src="switch-24-portas.jpg" width="1100" height="120" alt="Switch de rede 24 portas">
   <br>
   Status das portas: <span class="verde"></span> <span class="verde"></span> <span class="vermelho"></span> <span class="verde"></span> <span class="vermelho"></span>
   <br><br>
@@ -210,7 +192,7 @@ input, textarea { border: 1px solid #f5f5f5; width: 300px; height: 30px; color: 
             <option>Outro assunto</option>
           </select><br><br>
           <textarea id="msg" placeholder="Mensagem"></textarea><br><br>
-          <button onclick="enviar()" class="botao">Montar mensagem</button>
+          <button onclick="enviar(event)" class="botao">Montar mensagem</button>
         </form>
         <div id="resultado" style="color:#ccc"></div>
       </td>
@@ -218,7 +200,7 @@ input, textarea { border: 1px solid #f5f5f5; width: 300px; height: 30px; color: 
         <font size="1" color="#ccc">WHATSAPP</font><br>
         <span id="c-wa">(51) 99000-0000</span> <span onclick="copiar('c-wa')" style="color:#ffeb3b;cursor:pointer">[copiar]</span><br><br>
         <font size="1" color="#ccc">TELEFONE</font><br>
-        <span id="c-wa">(51) 3000-0000</span> <span onclick="copiar('c-tel')" style="color:#ffeb3b;cursor:pointer">[copiar]</span><br><br>
+        <span id="c-tel">(51) 3000-0000</span> <span onclick="copiar('c-tel')" style="color:#ffeb3b;cursor:pointer">[copiar]</span><br><br>
         <font size="1" color="#ccc">E-MAIL</font><br>
         <span id="c-mail">contato@SmartWebinformatica.com.br</span> <span onclick="copiar('c-mail')" style="color:#ffeb3b;cursor:pointer">[copiar]</span><br><br>
         <font color="#ccc">Respondemos em até um dia útil. Para projeto de rede, informe quantos computadores, impressoras e pontos de Wi-Fi a empresa tem hoje.</font>
@@ -231,161 +213,37 @@ input, textarea { border: 1px solid #f5f5f5; width: 300px; height: 30px; color: 
 <div id="faq" style="display:none">
   <h1>Perguntas frequentes</h1>
 
-  <h6 onmouseover="this.nextSibling.style.display='block'" onmouseout="this.nextSibling.style.display='none'">Como faço um pedido?</h6>
+  <h6>Como faço um pedido?</h6>
   <div class="resposta">Na aba Produtos, adicione os itens ao pedido e clique em Solicitar pedido. A mensagem já sai com a lista e o total. Depois é só enviá-la pelo WhatsApp ou pelo e-mail da loja.</div>
 
-  <h6 onmouseover="this.nextSibling.style.display='block'" onmouseout="this.nextSibling.style.display='none'">Quais são as formas de pagamento?</h6>
+  <h6>Quais são as formas de pagamento?</h6>
   <div class="resposta">Pix, boleto, cartão de crédito em até 10 vezes e faturamento para empresas com cadastro aprovado.</div>
 
-  <h6 onmouseover="this.nextSibling.style.display='block'" onmouseout="this.nextSibling.style.display='none'">Qual é o prazo de entrega?</h6>
+  <h6>Qual é o prazo de entrega?</h6>
   <div class="resposta">Itens em estoque saem em até 2 dias úteis. Equipamentos de rede sob encomenda levam de 5 a 10 dias úteis, e avisamos o prazo no orçamento.</div>
 
-  <h6 onmouseover="this.nextSibling.style.display='block'" onmouseout="this.nextSibling.style.display='none'">Os produtos têm garantia e nota fiscal?</h6>
+  <h6>Os produtos têm garantia e nota fiscal?</h6>
   <div class="resposta">Sim. Todos os produtos têm nota fiscal e garantia do fabricante. Equipamentos de linha empresarial costumam ter garantia estendida, informada na página de cada item.</div>
 
-  <h6 onmouseover="this.nextSibling.style.display='block'" onmouseout="this.nextSibling.style.display='none'">Vocês instalam a rede da minha empresa?</h6>
+  <h6>Vocês instalam a rede da minha empresa?</h6>
   <div class="resposta">Fazemos o projeto, o cabeamento e a configuração. A entrega inclui o mapa de cabeamento, a tabela de endereços IP e as senhas dos equipamentos.</div>
 
-  <h6 onmouseover="this.nextSibling.style.display='block'" onmouseout="this.nextSibling.style.display='none'">Qual servidor eu devo comprar?</h6>
+  <h6>Qual servidor eu devo comprar?</h6>
   <div class="resposta">Depende do uso. Para guardar arquivos e fazer backup, um NAS atende bem e gasta menos energia. Para controle de domínio ou sistemas de gestão, indicamos um servidor em torre de entrada.</div>
 
-  <h6 onmouseover="this.nextSibling.style.display='block'" onmouseout="this.nextSibling.style.display='none'">Posso trocar um produto?</h6>
+  <h6>Posso trocar um produto?</h6>
   <div class="resposta">Compras feitas pelo site podem ser devolvidas em até 7 dias corridos após o recebimento, com o produto lacrado e sem uso.</div>
 </div>
 
 <br><br><br>
 <div class="rodape" style="background:#f9f9f9;padding:20px;color:#ddd;font-size:10px">
-  <center>
+  <div style="text-align:center">
     <script>document.write("© " + new Date().getFullYear())</script> SmartWeb Informática. Site desenvolvido por Baré Tech Sistemas S.A. Produtos, preços e contatos são exemplos.
-  </center>
+  </div>
 </div>
 
-
-<script>
-const produtos = [
-  {nome: "Notebook Pro 14\", i5, 16 GB, SSD 512 GB", sku: "NB-PRO14", linha: "comp", preco: 4290, desc: "Tela Full HD, teclado com numérico reduzido e bateria para o dia todo."},
-  {nome: "Desktop Office, i5, 8 GB, SSD 256 GB", sku: "DT-OFFICE", linha: "comp", preco: 2890, desc: "Torre compacta para caixa e atendimento, com Windows 11 Pro."},
-  {nome: "Mini PC Compacto, Ryzen 5, 16 GB", sku: "MP-R5", linha: "comp", preco: 2390, desc: "Cabe atrás do monitor e gasta pouca energia. Ideal para recepção."},
-  {nome: "Monitor 24\" Full HD IPS", sku: "MN-24IPS", linha: "comp", preco: 849, desc: "Ângulo de visão aberto, entradas HDMI e DisplayPort, base ajustável."},
-  {nome: "Switch gerenciável Gigabit, 24 portas", sku: "SW-GER24", linha: "rede", preco: 1690, desc: "VLANs, controle de banda e portas sobrando para a empresa crescer."},
-  {nome: "Access Point Wi-Fi 6 de teto", sku: "AP-W6T", linha: "rede", preco: 780, desc: "Rede separada para visitantes e alimentação pelo cabo de rede (PoE)."},
-  {nome: "Roteador dual WAN com VLAN", sku: "RT-DWAN", linha: "rede", preco: 620, desc: "Dois links de internet com troca automática se um cair."},
-  {nome: "Cabo CAT6, caixa com 305 m", sku: "CB-CAT6-305", linha: "rede", preco: 690, desc: "Par trançado para pontos de rede Gigabit, com capa antichama."},
-  {nome: "NAS de 2 baias", sku: "NAS-2B", linha: "prot", preco: 2190, desc: "Compartilha arquivos e faz backup automático. Discos vendidos à parte."},
-  {nome: "Nobreak senoidal 1500 VA", sku: "UPS-1500S", linha: "prot", preco: 2450, desc: "Energia limpa para servidor e switch, com proteção contra queima."},
-  {nome: "SSD NVMe 1 TB", sku: "SSD-NV1T", linha: "prot", preco: 520, desc: "Troca o disco antigo e deixa o computador bem mais rápido."},
-  {nome: "HD externo 2 TB, USB 3.0", sku: "HD-EXT2T", linha: "prot", preco: 489, desc: "Segunda mídia local para a cópia de segurança diária."},
-  {nome: "Antena de Internet via Satélite Compacta", sku: "SAT-COMP", linha: "rede", preco: 3150, desc: "Conexão estável e de baixa latência, ideal para regiões isoladas ou fluviais."}
-];
-
-let carrinho = [];
-let linhaAtual = "todas";
-
-function mostraAba(aba) {
-  const abas = ["empresa", "produtos", "contato", "faq"];
-  abas.forEach(id => {
-    document.getElementById(id).style.display = (id === aba) ? "block" : "none";
-  });
-}
-
-function montaCatalogo(termoBusca = "") {
-  let html = "";
-  let produtosFiltrados = produtos.filter(p => 
-    (linhaAtual === "todas" || p.linha === linhaAtual) &&
-    (p.nome.toLowerCase().includes(termoBusca.toLowerCase()) || p.sku.toLowerCase().includes(termoBusca.toLowerCase()))
-  );
-
-  if (produtosFiltrados.length === 0) {
-    html = "<p>Nenhum produto encontrado.</p>";
-  } else {
-    produtosFiltrados.forEach((produto) => {
-      let realIndex = produtos.findIndex(p => p.sku === produto.sku);
-      html = html + "<div class='card' style='float:left;width:240px;height:330px;margin:5px;border:1px solid #eee'>";
-      html = html + "<img src='produto" + realIndex + ".png' width='120' alt=''>";
-      html = html + "<font size='1' color='#ccc'>" + produto.sku + "</font><br>";
-      html = html + "<h4>" + produto.nome + "</h4>";
-      html = html + "<font size='2' color='#bbb'>" + produto.desc + "</font><br><br>";
-      html = html + "<b style='font-size:20px'>R$ " + produto.preco.toFixed(2) + "</b><br>";
-      html = html + "<button class='botao' onclick='adiciona(" + realIndex + ")'>Adicionar ao pedido</button>";
-      html = html + "</div>";
-    });
-  }
-  document.getElementById("catalogo").innerHTML = html;
-}
-
-function filtra(linha) {
-  linhaAtual = linha;
-  montaCatalogo();
-}
-
-function busca() {
-  const termo = document.getElementById("busca").value;
-  document.getElementById("resultadoBusca").innerHTML = termo ? "Você buscou por: <b>" + termo + "</b>" : "";
-  montaCatalogo(termo);
-}
-
-function adiciona(index) {
-  carrinho.push(produtos[index]);
-  atualizaCarrinho();
-}
-
-function limpar() {
-  carrinho = [];
-  atualizaCarrinho();
-}
-
-function atualizaCarrinho() {
-  const total = carrinho.reduce((soma, item) => soma + item.preco, 0);
-  document.getElementById("qtd").innerText = carrinho.length;
-  document.getElementById("total").innerText = "R$ " + total.toFixed(2);
-}
-
-function enviar(evento) {
-  if(evento) evento.preventDefault();
-  
-  const nome = document.getElementById("nome").value.trim();
-  const email = document.getElementById("email").value.trim();
-  const msg = document.getElementById("msg").value.trim();
-  const resultado = document.getElementById("resultado");
-  
-  let erros = [];
-  if (!nome) erros.push("O campo Nome é obrigatório.");
-  if (!email.includes("@")) erros.push("Insira um email válido.");
-  if (!msg) erros.push("A mensagem não pode estar vazia.");
-
-  if (erros.length > 0) {
-    resultado.innerHTML = "<span style='color:red'>" + erros.join("<br>") + "</span>";
-  } else {
-    resultado.innerHTML = "<span style='color:green'>Mensagem montada com sucesso!<br>Nome: " + nome + "<br>Email: " + email + "<br>Mensagem: " + msg + "</span>";
-  }
-}
-
-function copiar(id) {
-  const texto = document.getElementById(id).innerText;
-  navigator.clipboard.writeText(texto).then(() => {
-    alert("Copiado com sucesso!"); 
-  });
-}
-
-function configuraFAQ() {
-  const perguntas = document.querySelectorAll("#faq h6");
-  perguntas.forEach(pergunta => {
-    pergunta.onmouseover = null;
-    pergunta.onmouseout = null;
-    pergunta.style.cursor = "pointer";
-    pergunta.addEventListener("click", () => {
-      const resposta = pergunta.nextElementSibling;
-      resposta.style.display = resposta.style.display === "block" ? "none" : "block";
-    });
-  });
-}
-
-document.addEventListener("DOMContentLoaded", () => {
-  montaCatalogo();
-  configuraFAQ();
-});
-</script>
-
+<!-- Ligação para o novo ficheiro JavaScript -->
+<script src="js/app.js"></script>
 
 </body>
 </html>

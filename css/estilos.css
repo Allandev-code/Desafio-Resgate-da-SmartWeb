@@ -163,3 +163,44 @@ input, textarea {
     background: #eee; 
     color: #999; 
 }
+
+/* Layout Moderno (Substituição das tags <table>) */
+.flex-header { 
+    display: flex; 
+    align-items: center; 
+    justify-content: space-between; 
+    width: 1100px; 
+    height: 90px; 
+}
+
+.header-esq { 
+    display: flex; 
+    align-items: center; 
+    gap: 20px; 
+}
+
+.header-dir { 
+    color: #3b7fc0; 
+    cursor: pointer; 
+}
+
+.grid-layout { 
+    display: grid; 
+    grid-template-columns: 220px 1fr; 
+    margin-bottom: 20px; 
+}
+
+.grid-produtos-venda { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr 1fr; 
+    gap: 20px; 
+    border: 1px solid #ccc; 
+    padding: 15px; 
+}
+
+.grid-contato { 
+    display: grid; 
+    grid-template-columns: 1fr 1fr; 
+    gap: 20px; 
+    width: 100%; 
+}

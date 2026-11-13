@@ -11,3 +11,9 @@
 
 ### Reflexão da Etapa 1
 Um utilizador comum perceberia de imediato que a página tem problemas de funcionamento, pois os produtos não carregam e os botões parecem não responder. Já o utilizador cego ficaria completamente bloqueado desde o primeiro segundo, uma vez que o site não permite navegação por teclado e as imagens não possuem texto alternativo (`alt`) para o leitor de ecrã. Para um utilizador idoso que precise aplicar zoom a 200%, ou para alguém que navege através do celular, a experiência seria igualmente frustrante, dado que o layout não é responsivo e o texto fica ilegível ou cortado devido à largura fixa da página.
+
+### Reflexão da Etapa 2
+Durante a correção do JavaScript, ficou claro como a ordem de execução do código afeta toda a aplicação. Na Etapa 2, compreendi que o script não pode tentar manipular elementos HTML que ainda não foram carregados na tela, sendo essencial o uso do `DOMContentLoaded` (ou mover o script para o final do `body`) para evitar erros fatais de leitura (`undefined`). 
+
+### Reflexão da Etapa 3
+Na Etapa 3, a refatoração das funcionalidades mostrou a importância de modernizar o código. A substituição de práticas antigas e bloqueantes (como os `alert()` invasivos no formulário) por validações dinâmicas injetadas diretamente no DOM melhorou drasticamente a experiência do usuário. Sem deixar de falar que a troca de eventos como `onmouseover` por eventos de `click` no FAQ tornou a interface muito mais acessível e profissional, permitindo que qualquer pessoa consiga interagir com o conteúdo de forma clara.

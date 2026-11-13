@@ -104,7 +104,7 @@ function copiar(id) {
 }
 
 function configuraFAQ() {
-  const perguntas = document.querySelectorAll("#faq h6");
+  const perguntas = document.querySelectorAll("#faq h2");
   perguntas.forEach(pergunta => {
     pergunta.onmouseover = null;
     pergunta.onmouseout = null;

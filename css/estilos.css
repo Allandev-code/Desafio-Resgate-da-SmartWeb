@@ -31,16 +31,16 @@
 ========================================= */
 :root {
   /* Cores com prefixo da equipa (--sw-) */
-  --sw-cor-primaria: #3b7fc0;
-  --sw-cor-secundaria: #5d8fbf;
-  --sw-cor-alerta: red;
-  --sw-cor-sucesso: green;
-  --sw-cor-cinza-claro: #ccc;
-  --sw-cor-cinza-escuro: #bbb;
-  --sw-cor-borda: #eee;
-  --sw-cor-fundo-rodape: #f9f9f9;
+  --sw-cor-primaria: #255a8f; /* Era #3b7fc0 */
+  --sw-cor-secundaria: #396a99; /* Era #5d8fbf */
+  --sw-cor-alerta: #cc0000; /* Era red (#ff0000) */
+  --sw-cor-sucesso: #007300; /* Era green */
+  --sw-cor-cinza-claro: #595959; /* Era #ccc (chumbava redondamente) */
+  --sw-cor-cinza-escuro: #404040; /* Era #bbb */
+  --sw-cor-borda: #ccc; /* Bordas não exigem 4.5:1, mantido claro */
+  --sw-cor-fundo-rodape: #f0f0f0;
   --sw-cor-foco: #0a62a8;
-  --sw-cor-amarelo: #ffeb3b;
+  --sw-cor-amarelo: #997300; /* Era #ffeb3b (ilegível no branco) */
 
   /* Espaçamentos Relativos (rem) */
   --sw-espaco-pp: 0.3125rem; /* 5px */

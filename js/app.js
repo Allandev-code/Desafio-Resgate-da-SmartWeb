@@ -30,6 +30,15 @@ function anunciarParaLeitor(mensagem) {
     }
 }
 
+// Limpa inputs do utilizador para prevenir ataques XSS (Passo 5)
+function escaparHTML(texto) {
+    return texto
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+}
 
 /* =========================================
    LÓGICA DA INTERFACE E PRODUTOS
@@ -80,7 +89,8 @@ function filtra(linha) {
 
 function busca() {
   const termo = document.getElementById("busca").value;
-  document.getElementById("resultadoBusca").innerHTML = termo ? "Você buscou por: <b>" + termo + "</b>" : "";
+  const termoSeguro = escaparHTML(termo); // Limpa o texto antes de o usar no HTML
+  document.getElementById("resultadoBusca").innerHTML = termoSeguro ? "Você buscou por: <b>" + termoSeguro + "</b>" : "";
   montaCatalogo(termo);
   anunciarParaLeitor(`Resultados atualizados para a busca: ${termo}`);
 }
@@ -122,7 +132,11 @@ function enviar(evento) {
     resultado.innerHTML = `<span class='texto-alerta' style='color:var(--sw-cor-alerta)'>${erros.join("<br>")}</span>`;
     // Como tem aria-live, o erro será lido
   } else {
-    resultado.innerHTML = `<span class='texto-sucesso' style='color:var(--sw-cor-sucesso)'>Mensagem montada com sucesso!<br>Nome: ${nome}<br>Email: ${email}<br>Mensagem: ${msg}</span>`;
+    // Escapa os dados do utilizador antes de os injetar no DOM via innerHTML
+    const nomeSeguro = escaparHTML(nome);
+    const emailSeguro = escaparHTML(email);
+    const msgSegura = escaparHTML(msg);
+    resultado.innerHTML = `<span class='texto-sucesso' style='color:var(--sw-cor-sucesso)'>Mensagem montada com sucesso!<br>Nome: ${nomeSeguro}<br>Email: ${emailSeguro}<br>Mensagem: ${msgSegura}</span>`;
   }
 }
 

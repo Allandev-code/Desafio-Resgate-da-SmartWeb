@@ -129,6 +129,19 @@ body {
     color: #999; 
 }
 
+/* Limpa o estilo padrão do botão nativo para se parecer com links/abas */
+button.aba, button.link-filtro, button.link-pedido {
+  background: none;
+  border: none;
+  font: inherit;
+  color: inherit;
+}
+
+button.link-filtro, button.link-pedido {
+  color: var(--sw-cor-primaria);
+  text-decoration: underline; /* Ajuda a identificar que é clicável */
+}
+
 /* Sinais visuais e Animação */
 .verde { 
     width: 0.625rem; 

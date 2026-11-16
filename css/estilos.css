@@ -142,29 +142,31 @@ button.link-filtro, button.link-pedido {
   text-decoration: underline; /* Ajuda a identificar que é clicável */
 }
 
-/* Sinais visuais e Animação */
+/* Sinais visuais */
+/* Verde = Círculo com V | Vermelho = Quadrado com X (Acessibilidade - Passo 4) */
 .verde { 
-    width: 0.625rem; 
-    height: 0.625rem; 
+    width: 1.2rem; 
+    height: 1.2rem; 
     background: var(--sw-cor-sucesso); 
-    display: inline-block; 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    border-radius: 50%; 
+    color: white; 
+    font-size: 0.7rem; 
+    font-weight: bold; 
 }
 
 .vermelho { 
-    width: 0.625rem; 
-    height: 0.625rem; 
+    width: 1.2rem; 
+    height: 1.2rem; 
     background: var(--sw-cor-alerta); 
-    display: inline-block; 
-}
-
-.piscar { 
-    animation: pisca 0.4s infinite; 
-}
-
-@keyframes pisca { 
-    0% { opacity: 1; } 
-    50% { opacity: 0; } 
-    100% { opacity: 1; } 
+    display: inline-flex; 
+    align-items: center; 
+    justify-content: center; 
+    color: white; 
+    font-size: 0.7rem; 
+    font-weight: bold; 
 }
 
 /* =========================================

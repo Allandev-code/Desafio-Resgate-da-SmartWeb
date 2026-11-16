@@ -155,7 +155,7 @@ body {
 }
 
 /* =========================================
-   ESTRUTURA E COMPONENTES (Passo 4 Preparação)
+   ESTRUTURA E COMPONENTES (Passos 4 e 5 - Mobile-First)
 ========================================= */
 .oculto { 
     display: none !important; 
@@ -169,71 +169,80 @@ body {
     clear: both; 
 }
 
-/* Grid e Flexbox com unidades relativas */
+/* Imagens Responsivas (Garante que o banner do switch não rebenta o ecrã) */
+.img-fluida { 
+    max-width: 100%; 
+    height: auto; 
+    display: block; 
+}
+
+/* 1. LAYOUT BASE (Celulares / Telas até 360px) */
+/* Tudo em 1 coluna, centralizado para facilitar o toque */
 .flex-header { 
     display: flex; 
+    flex-direction: column; 
     align-items: center; 
-    justify-content: space-between; 
-    max-width: 68.75rem; /* 1100px */ 
-    margin: 0 auto; 
-    min-height: 5.625rem; 
-    padding: 0 var(--sw-espaco-m); 
+    gap: var(--sw-espaco-p); 
+    text-align: center; 
+    padding: var(--sw-espaco-m) 0; 
 }
 
 .header-esq { 
     display: flex; 
+    flex-direction: column; 
     align-items: center; 
-    gap: var(--sw-espaco-m); 
+    gap: var(--sw-espaco-p); 
 }
 
 .menu-navegacao { 
     display: flex; 
-    gap: var(--sw-espaco-m); 
-    justify-content: center; 
-    margin-top: var(--sw-espaco-m); 
+    flex-direction: column; 
+    width: 100%; 
+    margin-top: var(--sw-espaco-p); 
 }
 
 .aba { 
     cursor: pointer; 
     padding: var(--sw-espaco-p); 
     font-weight: bold; 
+    text-align: center; 
+    border-bottom: 1px solid var(--sw-cor-borda); 
 }
 
 main { 
-    max-width: 68.75rem; 
-    margin: 0 auto; 
-    padding: var(--sw-espaco-m); 
-}
+    padding: var(--sw-espaco-p); 
+    width: 100%; 
+    overflow-x: hidden; 
+} /* overflow-x: hidden evita rolagem horizontal indesejada */
 
+/* Grids Mobile: 1 Coluna */
 .grid-layout { 
     display: grid; 
-    grid-template-columns: 13.75rem 1fr; 
+    grid-template-columns: 1fr; 
+    gap: var(--sw-espaco-p); 
     margin-bottom: var(--sw-espaco-m); 
-    gap: var(--sw-espaco-m); 
 }
 
 .grid-produtos-venda { 
     display: grid; 
-    grid-template-columns: repeat(3, 1fr); 
-    gap: var(--sw-espaco-m); 
+    grid-template-columns: 1fr; 
+    gap: var(--sw-espaco-p); 
     border: 1px solid var(--sw-cor-cinza-claro); 
-    padding: var(--sw-espaco-m); 
+    padding: var(--sw-espaco-p); 
 }
 
 .grid-contato { 
     display: grid; 
-    grid-template-columns: 1fr 1fr; 
+    grid-template-columns: 1fr; 
     gap: var(--sw-espaco-m); 
-    width: 100%; 
 }
 
+/* Componentes */
 .caixa-pedido { 
     border: 1px solid var(--sw-cor-borda); 
     padding: var(--sw-espaco-p); 
     margin-top: var(--sw-espaco-m); 
 }
-
-/* Inputs e Formulário */
 input, textarea, select { 
     border: 1px solid var(--sw-cor-borda); 
     width: 100%; 
@@ -246,12 +255,40 @@ textarea {
     min-height: 6.25rem; 
 }
 
-/* Rodapé */
-.rodape { 
-    background-color: var(--sw-cor-fundo-rodape); 
-    padding: var(--sw-espaco-m); 
-    color: var(--sw-cor-cinza-escuro); 
-    font-size: var(--sw-fonte-pequena); 
-    text-align: center; 
-    margin-top: var(--sw-espaco-g); 
+/* 2. MEDIA QUERIES (Tablets e Desktops - a partir de 768px) */
+@media (min-width: 768px) {
+  /* Expande o cabeçalho para os lados */
+  .flex-header { flex-direction: row;
+     justify-content: space-between; 
+     max-width: 68.75rem; 
+     margin: 0 auto; 
+     min-height: 5.625rem; 
+     padding: 0 var(--sw-espaco-m); 
+    }
+
+  .header-esq { flex-direction: row; 
+    gap: var(--sw-espaco-m); }
+  
+  /* Expande o menu para linha horizontal */
+  .menu-navegacao { flex-direction: row; 
+    justify-content: center; 
+    gap: var(--sw-espaco-m); 
+    margin-top: var(--sw-espaco-m); }
+
+    .aba { width: auto; 
+        border-bottom: none; }
+  
+  main { max-width: 68.75rem; 
+    margin: 0 auto; 
+    padding: var(--sw-espaco-m); }
+  
+  /* Expande as Grids para múltiplas colunas */
+  .grid-layout { grid-template-columns: 13.75rem 1fr; 
+    gap: var(--sw-espaco-m); }
+
+  .grid-produtos-venda { grid-template-columns: repeat(3, 1fr); 
+    gap: var(--sw-espaco-m); 
+    padding: var(--sw-espaco-m); }
+    
+  .grid-contato { grid-template-columns: 1fr 1fr; }
 }

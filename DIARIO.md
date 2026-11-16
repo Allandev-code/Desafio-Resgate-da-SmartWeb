@@ -44,3 +44,17 @@ Na navegação do DOM (como no nosso FAQ), chamar apenas o "próximo nó" pode c
 
 ### Reflexão da Etapa 4
 Adicionei na pasta evidências a foto do rascunho das regiões HTML5 (evidencias/desenho-layout.jpg). A Etapa 4 focou-se em transformar um código legado e pouco acessível numa estrutura HTML5 moderna, semântica e inclusiva. A separação rigorosa de responsabilidades — movendo estilos para CSS e comportamento para JS — eliminou o código misturado e facilitou a manutenção. A troca de tabelas de layout e tags obsoletas por elementos semânticos (`<header>`, `<main>`) e CSS Grid/Flexbox otimizou a estrutura da página. O ponto alto foi a implementação de práticas de acessibilidade (A11y), como navegação por teclado e rótulos ocultos para leitores de ecrã, culminando na validação com zero erros no W3C. O site deixou de ser apenas visualmente funcional para se tornar tecnicamente robusto e preparado para a responsividade.
+
+### Análise de Especificidade (Passo 2 - Etapa 5)
+
+| Seletor Original (Complexo) | Cálculo (a, b, c) | Novo Seletor (Simples) | Novo Cálculo | Motivo da mudança |
+| :--- | :--- | :--- | :--- | :--- |
+| `div#empresa h1` | (1, 0, 2) | `.titulo-principal` ou apenas `h1` | (0, 1, 0) ou (0, 0, 1) | Evitar o uso do ID `#empresa` que "prende" o estilo, substituindo por classe ou tag direta. |
+| `table tr td .texto-cinza-pequeno` | (0, 1, 3) | `.texto-cinza-pequeno` | (0, 1, 0) | O aninhamento de tags de tabela era desnecessário e aumentava a especificidade (0,1,3). A classe isolada é suficiente. |
+| `#menu div.aba` | (1, 1, 1) | `.aba` | (0, 1, 0) | O ID `#menu` e a tag `div` sobrecarregavam o seletor. A classe `.aba` já é única o suficiente. |
+| `div#produtos input#busca` | (2, 0, 2) | `.input-busca` | (0, 1, 0) | Dois IDs no mesmo seletor (2,0,2) tornam quase impossível sobrescrever o estilo no mobile sem usar `!important`. |
+| `#faq h6` (ou `h2`) | (1, 0, 1) | `.item-faq h2` | (0, 1, 1) | Reduzimos o peso do ID, utilizando a classe do contentor para manter a modularidade do componente. |
+
+**Justificativa para o uso de `!important` restantes:**
+O único `!important` mantido no projeto foi na classe `.oculto { display: none !important; }` e `.visivel { display: block !important; }`. 
+* **Justificativa:** Estas classes são injetadas via JavaScript para controlar o estado da interface (abas abertas/fechadas). O `!important` garante que este comportamento de estado se sobrepõe a qualquer regra de layout (como Flexbox ou Grid) independentemente da especificidade do elemento.

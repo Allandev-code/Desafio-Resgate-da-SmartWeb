@@ -62,3 +62,7 @@ Adicionei na pasta evidências a foto do rascunho das regiões HTML5 (evidencias
 **Justificativa para o uso de `!important` restantes:**
 O único `!important` mantido no projeto foi na classe `.oculto { display: none !important; }` e `.visivel { display: block !important; }`. 
 * **Justificativa:** Estas classes são injetadas via JavaScript para controlar o estado da interface (abas abertas/fechadas). O `!important` garante que este comportamento de estado se sobrepõe a qualquer regra de layout (como Flexbox ou Grid) independentemente da especificidade do elemento.
+
+### Reflexão da Etapa 5
+
+A Etapa 5 consolidou a modernização visual e estrutural do projeto através da arquitetura *Mobile-First*. A aprendizagem central foi a importância da separação rigorosa de responsabilidades: ao remover estilos *inline* do HTML e manipulações visuais diretas no JavaScript, o código tornou-se modular e altamente manutenível. A implementação de Variáveis CSS centralizou o design-system da marca, enquanto a conversão de medidas absolutas (`px`) para relativas (`rem`) garantiu acessibilidade real para utilizadores que dependem de zoom. A mudança de paradigma mais impactante foi a substituição de layouts engessados por **CSS Grid e Flexbox**. Construir a base para ecrãs de 360px e expandi-la gradualmente com *Media Queries* (768px+) eliminou a rolagem horizontal e quebras de layout. Os testes práticos confirmam que a interface da SmartWeb é agora robusta, inclusiva e 100% responsiva.

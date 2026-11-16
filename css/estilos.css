@@ -1,7 +1,7 @@
 * { 
     margin: 0; 
     padding: 0; 
-    outline: none !important; 
+    box-sizing: border-box;
 }
 
 body { 
@@ -215,4 +215,58 @@ input, textarea {
     overflow: hidden; 
     clip: rect(0, 0, 0, 0); 
     border: 0; 
+}
+
+/* Acessibilidade: Restaura o foco visível para navegação por teclado */
+*:focus-visible {
+     outline: 3px solid #0a62a8; 
+     outline-offset: 3px; 
+     border-radius: 4px;
+}
+
+ /* --- ETAPA 5: SEPARAÇÃO DE RESPONSABILIDADES --- */
+/* Classes de Utilidade e Layout */
+body { 
+    background-color: #ffffff;
+}
+
+.oculto {
+     display: none !important;
+}
+
+.visivel { 
+    display: block !important;
+}
+
+.link-pedido {
+     color: #3b7fc0; 
+     cursor: pointer; 
+}
+
+.btn-flutuante { 
+    float: left;
+}
+
+.limpa-float {
+     clear: both; 
+}
+
+.caixa-pedido { 
+    border: 1px solid #eee; 
+    padding: 10px; 
+    margin-top: 20px;
+}
+
+.texto-sucesso {
+     color: green; 
+     font-weight: bold; 
+}
+
+/* Estilo centralizado do Rodapé */
+.rodape {
+  background-color: #f9f9f9;
+  padding: 20px;
+  color: #ddd;
+  font-size: 10px;
+  text-align: center;
 }

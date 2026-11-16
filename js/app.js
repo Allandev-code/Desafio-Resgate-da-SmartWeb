@@ -18,10 +18,11 @@ let carrinho = [];
 let linhaAtual = "todas";
 
 function mostraAba(aba) {
-  const abas = ["empresa", "produtos", "contato", "faq"];
-  abas.forEach(id => {
-    document.getElementById(id).style.display = (id === aba) ? "block" : "none";
-  });
+    document.getElementById('empresa').classList.add('oculto');
+    document.getElementById('produtos').classList.add('oculto');
+    document.getElementById('contato').classList.add('oculto');
+    document.getElementById('faq').classList.add('oculto');
+    document.getElementById(abaId).classList.remove('oculto');
 }
 
 function montaCatalogo(termoBusca = "") {
@@ -104,16 +105,14 @@ function copiar(id) {
 }
 
 function configuraFAQ() {
-  const perguntas = document.querySelectorAll("#faq h2");
-  perguntas.forEach(pergunta => {
-    pergunta.onmouseover = null;
-    pergunta.onmouseout = null;
-    pergunta.style.cursor = "pointer";
-    pergunta.addEventListener("click", () => {
-      const resposta = pergunta.nextElementSibling;
-      resposta.style.display = resposta.style.display === "block" ? "none" : "block";
+    const perguntas = document.querySelectorAll("#faq h2");
+    perguntas.forEach(pergunta => {
+        pergunta.addEventListener("click", () => {
+            const resposta = pergunta.nextElementSibling;
+            // Alterna a classe 'visivel' em vez de injetar CSS direto
+            resposta.classList.toggle('visivel');
+        });
     });
-  });
 }
 
 document.addEventListener("DOMContentLoaded", () => {

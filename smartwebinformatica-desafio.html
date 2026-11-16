@@ -4,205 +4,241 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>SmartWeb</title>
-  <!-- Ligação para o novo ficheiro CSS -->
-  <link rel="stylesheet" href="/css/estilos.css">
+  <link rel="stylesheet" href="css/estilos.css">
 </head>
 
-<body style="background-color: white;">
- <!-- CABEÇALHO SEMÂNTICO -->
-<header id="topo">
-  <div class="flex-header">
+<body>
+  <!-- CABEÇALHO SEMÂNTICO -->
+  <header id="topo" class="flex-header">
     <div class="header-esq">
       <img src="logo.png" width="60" height="60" alt="Logo da SmartWeb">
       <div class="logo">
-        <span><strong>SmartWeb</strong></span><br>
+        <span><strong>SmartWeb</strong></span>
         <span class="texto-azul-pequeno">INFORMÁTICA E REDES</span>
       </div>
     </div>
-    <div onclick="mostraAba('produtos')" class="header-dir">Meu pedido (<span id="qtd">0</span>)</div>
-  </div>
-</header>
+    <div id="btn-meu-pedido" class="link-pedido">Meu pedido (<span id="qtd">0</span>)</div>
+  </header>
 
-<!-- NAVEGAÇÃO SEMÂNTICA -->
-<nav id="menu">
-  <div class="aba" onclick="mostraAba('empresa')">A empresa</div>
-  <div class="aba" onclick="mostraAba('produtos')">Produtos</div>
-  <div class="aba" onclick="mostraAba('contato')">Contato</div>
-  <div class="aba" onclick="mostraAba('faq')">Perguntas frequentes</div>
-</nav>
-<br><br><br><br>
+  <!-- NAVEGAÇÃO SEMÂNTICA -->
+  <nav id="menu" class="menu-navegacao">
+    <div class="aba" data-alvo="empresa">A empresa</div>
+    <div class="aba" data-alvo="produtos">Produtos</div>
+    <div class="aba" data-alvo="contato">Contato</div>
+    <div class="aba" data-alvo="faq">Perguntas frequentes</div>
+  </nav>
 
-<!-- CONTEÚDO PRINCIPAL -->
-<main>
-  <!-- EMPRESA -->
-  <div id="empresa">
-    <div class="alerta-promocao piscar">*** PROMOÇÃO IMPERDÍVEL ***</div>
-    <span class="texto-cinza-pequeno">LOJA DE INFORMÁTICA E INFRAESTRUTURA DE REDE</span>
-    <h1>Equipamento certo para a sua empresa funcionar amanhã cedo.</h1>
-    <br>
-    <p class="texto-descritivo">A SmartWeb vende computadores, redes e proteção de dados para pequenas e médias empresas. Indicamos o que o seu negócio usa de verdade e deixamos o resto de fora.</p>
-    <br>
-    <div class="botao" style="float:left" onclick="mostraAba('produtos')">Ver produtos</div>
-    <div class="botao btn-orcamento" onclick="mostraAba('contato')">Pedir orçamento</div>
-    <br><br><br>
-
-    <img src="switch-24-portas.jpg" width="1100" height="120" alt="Painel frontal de um switch de rede de 24 portas">
-    <br>
-    Status das portas: 
-    <span class="verde" role="img" aria-label="Porta ativa"></span> 
-    <span class="verde" role="img" aria-label="Porta ativa"></span> 
-    <span class="vermelho" role="img" aria-label="Porta com erro"></span> 
-    <span class="verde" role="img" aria-label="Porta ativa"></span> 
-    <span class="vermelho" role="img" aria-label="Porta com erro"></span>
-    <br><br>
-
-    <!-- Layout Grid substituindo a Tabela principal -->
-    <div class="grid-layout">
-      <div><span class="texto-cinza-pequeno">QUEM SOMOS</span></div>
-      <div>
-        <p>A SmartWeb é uma loja de informática voltada ao comércio e aos escritórios. Vendemos pela internet e também montamos a rede interna do cliente, do cabo ao backup.</p><br>
-        <p class="texto-cinza-claro">Trabalhamos com linhas para empresas (SMB), que trazem controle de banda, segmentação por VLAN e garantia de balcão. Equipamento doméstico fica fora do catálogo de redes.</p>
+  <!-- CONTEÚDO PRINCIPAL -->
+  <main class="conteudo-principal">
+    
+    <!-- EMPRESA -->
+    <section id="empresa" class="seccao-aba visivel">
+      <div class="alerta-promocao piscar">*** PROMOÇÃO IMPERDÍVEL ***</div>
+      <span class="texto-cinza-pequeno">LOJA DE INFORMÁTICA E INFRAESTRUTURA DE REDE</span>
+      <h1>Equipamento certo para a sua empresa funcionar amanhã cedo.</h1>
+      
+      <p class="texto-descritivo espaco-abaixo">A SmartWeb vende computadores, redes e proteção de dados para pequenas e médias empresas. Indicamos o que o seu negócio usa de verdade e deixamos o resto de fora.</p>
+      
+      <div class="grupo-botoes espaco-abaixo-grande">
+        <button class="botao btn-acao" data-alvo="produtos">Ver produtos</button>
+        <button class="botao btn-orcamento btn-acao" data-alvo="contato">Pedir orçamento</button>
       </div>
-    </div>
 
-    <div class="grid-layout">
-      <div><span class="texto-cinza-pequeno">O QUE VENDEMOS</span></div>
-      <div>
-        <!-- Layout Grid substituindo a Tabela de produtos interna -->
-        <div class="grid-produtos-venda">
-          <div><h2>Computadores e notebooks</h2>Máquinas de trabalho para balcão, escritório e home office, com monitor e mini PC.</div>
-          <div><h2>Redes e conectividade</h2>Switches, Wi-Fi corporativo, roteadores e cabeamento CAT6.</div>
-          <div><h2>Armazenamento e proteção</h2>NAS, nobreak senoidal, SSD e discos externos para backup.</div>
+      <img src="switch-24-portas.jpg" width="1100" height="120" alt="Painel frontal de um switch de rede de 24 portas" class="img-fluida">
+      
+      <div class="status-portas espaco-abaixo-grande">
+        Status das portas: 
+        <span class="verde" role="img" aria-label="Porta ativa"></span> 
+        <span class="verde" role="img" aria-label="Porta ativa"></span> 
+        <span class="vermelho" role="img" aria-label="Porta com erro"></span> 
+        <span class="verde" role="img" aria-label="Porta ativa"></span> 
+        <span class="vermelho" role="img" aria-label="Porta com erro"></span>
+      </div>
+
+      <!-- Layout Grid substituindo a Tabela principal -->
+      <div class="grid-layout">
+        <div><span class="texto-cinza-pequeno">QUEM SOMOS</span></div>
+        <div>
+          <p class="espaco-abaixo-pequeno">A SmartWeb é uma loja de informática voltada ao comércio e aos escritórios. Vendemos pela internet e também montamos a rede interna do cliente, do cabo ao backup.</p>
+          <p class="texto-cinza-claro">Trabalhamos com linhas para empresas (SMB), que trazem controle de banda, segmentação por VLAN e garantia de balcão. Equipamento doméstico fica fora do catálogo de redes.</p>
         </div>
       </div>
-    </div>
 
-    <div class="grid-layout">
-      <div><span class="texto-cinza-pequeno">COMO TRABALHAMOS</span></div>
-      <div>
-        <h3>Rede com folga de 30% a 50%</h3>
-        <p>Eletrocalhas com espaço livre e switches com portas sobrando, para contratar gente sem trocar equipamento.</p><br>
-        <h3>Tudo documentado</h3>
-        <p>Entregamos o mapa de cabeamento, a tabela de IPs e as senhas de administração ao dono da empresa.</p><br>
-        <h3>Servidor do tamanho da necessidade</h3>
-        <p>Servidor de entrada para domínio e aplicações, ou NAS quando o uso é guardar e compartilhar arquivos.</p><br>
-        <h3>Backup 3-2-1</h3>
-        <p>Três cópias dos dados, duas mídias locais diferentes e uma cópia criptografada na nuvem.</p>
+      <div class="grid-layout">
+        <div><span class="texto-cinza-pequeno">O QUE VENDEMOS</span></div>
+        <div>
+          <div class="grid-produtos-venda">
+            <div class="card-produto"><h2>Computadores e notebooks</h2>Máquinas de trabalho para balcão, escritório e home office, com monitor e mini PC.</div>
+            <div class="card-produto"><h2>Redes e conectividade</h2>Switches, Wi-Fi corporativo, roteadores e cabeamento CAT6.</div>
+            <div class="card-produto"><h2>Armazenamento e proteção</h2>NAS, nobreak senoidal, SSD e discos externos para backup.</div>
+          </div>
+        </div>
       </div>
-    </div>
 
-    <div class="grid-layout">
-      <div><span class="texto-cinza-pequeno">ATENDIMENTO</span></div>
-      <div>
-        Segunda a sexta &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8h às 18h<br>
-        Sábado &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 8h às 12h<br>
-        Pedidos pelo site &nbsp;&nbsp;&nbsp; Recebidos todos os dias
+      <div class="grid-layout">
+        <div><span class="texto-cinza-pequeno">COMO TRABALHAMOS</span></div>
+        <div>
+          <h3 class="espaco-topo-pequeno">Rede com folga de 30% a 50%</h3>
+          <p class="espaco-abaixo-pequeno">Eletrocalhas com espaço livre e switches com portas sobrando, para contratar gente sem trocar equipamento.</p>
+          
+          <h3 class="espaco-topo-pequeno">Tudo documentado</h3>
+          <p class="espaco-abaixo-pequeno">Entregamos o mapa de cabeamento, a tabela de IPs e as senhas de administração ao dono da empresa.</p>
+          
+          <h3 class="espaco-topo-pequeno">Servidor do tamanho da necessidade</h3>
+          <p class="espaco-abaixo-pequeno">Servidor de entrada para domínio e aplicações, ou NAS quando o uso é guardar e compartilhar arquivos.</p>
+          
+          <h3 class="espaco-topo-pequeno">Backup 3-2-1</h3>
+          <p>Três cópias dos dados, duas mídias locais diferentes e uma cópia criptografada na nuvem.</p>
+        </div>
       </div>
-    </div>
-  </div>
 
-  <!-- PRODUTOS -->
-  <div id="produtos" style="display:none">
-    <input type="text" id="busca" placeholder="buscar..." onkeyup="busca()">
-    <span onclick="filtra('todas')" class="link-filtro">Todas as linhas</span> |
-    <span onclick="filtra('comp')" class="link-filtro">Computadores e notebooks</span> |
-    <span onclick="filtra('rede')" class="link-filtro">Redes e conectividade</span> |
-    <span onclick="filtra('prot')" class="link-filtro">Armazenamento e proteção</span>
-    <div id="resultadoBusca"></div>
-    <br>
-    <div id="catalogo"></div>
-    <div style="clear:both"></div>
-
-    <div id="pedido" style="border:1px solid #eee;padding:10px;margin-top:20px">
-      <h2>Meu pedido</h2>
-      Total: <span id="total" style="color:green"></span>
-      <br><br>
-      <div class="botao" onclick="mostraAba('contato')">Solicitar pedido</div>
-      <div class="botao btn-limpar" onclick="limpar()">Limpar</div>
-    </div>
-  </div>
-
-  <!-- CONTATO -->
-  <div id="contato" style="display:none">
-    <h1>Fale com a SmartWeb</h1>
-    <p class="texto-cinza-claro">Dúvidas, orçamentos e pedidos.</p>
-    <br><br>
-    
-    <!-- Layout Grid substituindo a Tabela de contato -->
-    <div class="grid-contato">
-      <div>
-        <form>
-          <label for="nome" class="leitor-ecra">Nome completo</label>
-          <input type="text" id="nome" placeholder="Nome"><br><br>
-          
-          <label for="email" class="leitor-ecra">Endereço de e-mail</label>
-          <input type="email" id="email" placeholder="Email"><br><br>
-          
-          <label for="assunto" class="leitor-ecra">Selecione o assunto</label>
-          <select id="assunto">
-            <option>Orçamento</option>
-            <option>Pedido de compra</option>
-            <option>Projeto de rede</option>
-            <option>Suporte e garantia</option>
-            <option>Outro assunto</option>
-          </select><br><br>
-          
-          <label for="msg" class="leitor-ecra">Sua mensagem</label>
-          <textarea id="msg" placeholder="Mensagem"></textarea><br><br>
-          
-          <button onclick="enviar(event)" class="botao">Montar mensagem</button>
-        </form>
-        <div id="resultado" class="texto-cinza-claro"></div>
+      <div class="grid-layout">
+        <div><span class="texto-cinza-pequeno">ATENDIMENTO</span></div>
+        <div class="info-atendimento">
+          <span>Segunda a sexta</span> <span>8h às 18h</span>
+          <span>Sábado</span> <span>8h às 12h</span>
+          <span>Pedidos pelo site</span> <span>Recebidos todos os dias</span>
+        </div>
       </div>
-      <div>
-        <span class="texto-cinza-pequeno">WHATSAPP</span><br>
-        <span id="c-wa">(51) 99000-0000</span> <span onclick="copiar('c-wa')" class="btn-copiar">[copiar]</span><br><br>
-        <span class="texto-cinza-pequeno">TELEFONE</span><br>
-        <span id="c-tel">(51) 3000-0000</span> <span onclick="copiar('c-tel')" class="btn-copiar">[copiar]</span><br><br>
-        <span class="texto-cinza-pequeno">E-MAIL</span><br>
-        <span id="c-mail">contato@SmartWebinformatica.com.br</span> <span onclick="copiar('c-mail')" class="btn-copiar">[copiar]</span><br><br>
-        <p class="texto-cinza-claro">Respondemos em até um dia útil. Para projeto de rede, informe quantos computadores, impressoras e pontos de Wi-Fi a empresa tem hoje.</p>
+    </section>
+
+    <!-- PRODUTOS -->
+    <section id="produtos" class="seccao-aba oculto">
+      <div class="filtros-busca espaco-abaixo">
+        <input type="text" id="busca" placeholder="buscar..." class="input-busca">
+        <div class="links-filtro">
+          <span data-filtro="todas" class="link-filtro">Todas as linhas</span> |
+          <span data-filtro="comp" class="link-filtro">Computadores e notebooks</span> |
+          <span data-filtro="rede" class="link-filtro">Redes e conectividade</span> |
+          <span data-filtro="prot" class="link-filtro">Armazenamento e proteção</span>
+        </div>
       </div>
+      
+      <div id="resultadoBusca" class="espaco-abaixo"></div>
+      
+      <div id="catalogo" class="grid-catalogo"></div>
+
+      <div id="pedido" class="caixa-pedido">
+        <h2>Meu pedido</h2>
+        <p class="espaco-abaixo-pequeno">Total: <span id="total" class="texto-sucesso">R$ 0,00</span></p>
+        <div class="grupo-botoes">
+          <button class="botao btn-acao" data-alvo="contato">Solicitar pedido</button>
+          <button id="btn-limpar-pedido" class="botao btn-limpar">Limpar</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- CONTATO -->
+    <section id="contato" class="seccao-aba oculto">
+      <h1>Fale com a SmartWeb</h1>
+      <p class="texto-cinza-claro espaco-abaixo-grande">Dúvidas, orçamentos e pedidos.</p>
+      
+      <div class="grid-contato">
+        <div class="form-container">
+          <form id="form-contato">
+            <div class="grupo-input">
+              <label for="nome" class="leitor-ecra">Nome completo</label>
+              <input type="text" id="nome" placeholder="Nome" class="input-padrao">
+            </div>
+            
+            <div class="grupo-input">
+              <label for="email" class="leitor-ecra">Endereço de e-mail</label>
+              <input type="email" id="email" placeholder="Email" class="input-padrao">
+            </div>
+            
+            <div class="grupo-input">
+              <label for="assunto" class="leitor-ecra">Selecione o assunto</label>
+              <select id="assunto" class="input-padrao">
+                <option>Orçamento</option>
+                <option>Pedido de compra</option>
+                <option>Projeto de rede</option>
+                <option>Suporte e garantia</option>
+                <option>Outro assunto</option>
+              </select>
+            </div>
+            
+            <div class="grupo-input">
+              <label for="msg" class="leitor-ecra">Sua mensagem</label>
+              <textarea id="msg" placeholder="Mensagem" class="input-padrao textarea-padrao"></textarea>
+            </div>
+            
+            <button type="submit" class="botao btn-enviar">Montar mensagem</button>
+          </form>
+          <div id="resultado" class="texto-cinza-claro espaco-topo-pequeno"></div>
+        </div>
+        
+        <div class="info-contato">
+          <div class="bloco-contato espaco-abaixo">
+            <span class="texto-cinza-pequeno">WHATSAPP</span>
+            <span id="c-wa" class="dado-contato">(51) 99000-0000</span> 
+            <button class="btn-copiar" data-copia="c-wa" aria-label="Copiar número de WhatsApp">[copiar]</button>
+          </div>
+          
+          <div class="bloco-contato espaco-abaixo">
+            <span class="texto-cinza-pequeno">TELEFONE</span>
+            <span id="c-tel" class="dado-contato">(51) 3000-0000</span> 
+            <button class="btn-copiar" data-copia="c-tel" aria-label="Copiar número de telefone">[copiar]</button>
+          </div>
+          
+          <div class="bloco-contato espaco-abaixo-grande">
+            <span class="texto-cinza-pequeno">E-MAIL</span>
+            <span id="c-mail" class="dado-contato">contato@SmartWebinformatica.com.br</span> 
+            <button class="btn-copiar" data-copia="c-mail" aria-label="Copiar endereço de e-mail">[copiar]</button>
+          </div>
+          
+          <p class="texto-cinza-claro">Respondemos em até um dia útil. Para projeto de rede, informe quantos computadores, impressoras e pontos de Wi-Fi a empresa tem hoje.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="seccao-aba oculto">
+      <h1 class="espaco-abaixo-grande">Perguntas frequentes</h1>
+      
+      <div class="item-faq">
+        <h2>Como faço um pedido?</h2>
+        <div class="resposta">Na aba Produtos, adicione os itens ao pedido e clique em Solicitar pedido. A mensagem já sai com a lista e o total. Depois é só enviá-la pelo WhatsApp ou pelo e-mail da loja.</div>
+      </div>
+
+      <div class="item-faq">
+        <h2>Quais são as formas de pagamento?</h2>
+        <div class="resposta">Pix, boleto, cartão de crédito em até 10 vezes e faturamento para empresas com cadastro aprovado.</div>
+      </div>
+
+      <div class="item-faq">
+        <h2>Qual é o prazo de entrega?</h2>
+        <div class="resposta">Itens em estoque saem em até 2 dias úteis. Equipamentos de rede sob encomenda levam de 5 a 10 dias úteis, e avisamos o prazo no orçamento.</div>
+      </div>
+
+      <div class="item-faq">
+        <h2>Os produtos têm garantia e nota fiscal?</h2>
+        <div class="resposta">Sim. Todos os produtos têm nota fiscal e garantia do fabricante. Equipamentos de linha empresarial costumam ter garantia estendida, informada na página de cada item.</div>
+      </div>
+
+      <div class="item-faq">
+        <h2>Vocês instalam a rede da minha empresa?</h2>
+        <div class="resposta">Fazemos o projeto, o cabeamento e a configuração. A entrega inclui o mapa de cabeamento, a tabela de endereços IP e as senhas dos equipamentos.</div>
+      </div>
+
+      <div class="item-faq">
+        <h2>Qual servidor eu devo comprar?</h2>
+        <div class="resposta">Depende do uso. Para guardar arquivos e fazer backup, um NAS atende bem e gasta menos energia. Para controle de domínio ou sistemas de gestão, indicamos um servidor em torre de entrada.</div>
+      </div>
+
+      <div class="item-faq">
+        <h2>Posso trocar um produto?</h2>
+        <div class="resposta">Compras feitas pelo site podem ser devolvidas em até 7 dias corridos após o recebimento, com o produto lacrado e sem uso.</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- RODAPÉ SEMÂNTICO -->
+  <footer class="rodape">
+    <div class="conteudo-rodape">
+      <span id="ano-atual"></span> SmartWeb Informática. Site desenvolvido por Baré Tech Sistemas S.A. Produtos, preços e contatos são exemplos.
     </div>
-  </div>
+  </footer>
 
-  <!-- FAQ -->
-  <div id="faq" style="display:none">
-    <h1>Perguntas frequentes</h1>
-    
-    <h2>Como faço um pedido?</h2>
-    <div class="resposta">Na aba Produtos, adicione os itens ao pedido e clique em Solicitar pedido. A mensagem já sai com a lista e o total. Depois é só enviá-la pelo WhatsApp ou pelo e-mail da loja.</div>
-
-    <h2>Quais são as formas de pagamento?</h2>
-    <div class="resposta">Pix, boleto, cartão de crédito em até 10 vezes e faturamento para empresas com cadastro aprovado.</div>
-
-    <h2>Qual é o prazo de entrega?</h2>
-    <div class="resposta">Itens em estoque saem em até 2 dias úteis. Equipamentos de rede sob encomenda levam de 5 a 10 dias úteis, e avisamos o prazo no orçamento.</div>
-
-    <h2>Os produtos têm garantia e nota fiscal?</h2>
-    <div class="resposta">Sim. Todos os produtos têm nota fiscal e garantia do fabricante. Equipamentos de linha empresarial costumam ter garantia estendida, informada na página de cada item.</div>
-
-    <h2>Vocês instalam a rede da minha empresa?</h2>
-    <div class="resposta">Fazemos o projeto, o cabeamento e a configuração. A entrega inclui o mapa de cabeamento, a tabela de endereços IP e as senhas dos equipamentos.</div>
-
-    <h2>Qual servidor eu devo comprar?</h2>
-    <div class="resposta">Depende do uso. Para guardar arquivos e fazer backup, um NAS atende bem e gasta menos energia. Para controle de domínio ou sistemas de gestão, indicamos um servidor em torre de entrada.</div>
-
-    <h2>Posso trocar um produto?</h2>
-    <div class="resposta">Compras feitas pelo site podem ser devolvidas em até 7 dias corridos após o recebimento, com o produto lacrado e sem uso.</div>
-  </div>
-</main>
-
-<br><br><br>
-
-<!-- RODAPÉ SEMÂNTICO -->
-<footer class="rodape" style="background:#f9f9f9;padding:20px;color:#ddd;font-size:10px">
-  <div style="text-align:center">
-    <script>document.write("© " + new Date().getFullYear())</script> SmartWeb Informática. Site desenvolvido por Baré Tech Sistemas S.A. Produtos, preços e contatos são exemplos.
-  </div>
-</footer>
-
-<script src="js/app.js"></script>
- 
+  <script src="js/app.js"></script>
 </body>
 </html>

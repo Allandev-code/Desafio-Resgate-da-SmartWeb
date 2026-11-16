@@ -1,75 +1,147 @@
+/* =========================================
+   RESET E ACESSIBILIDADE
+========================================= */
 * { 
-    margin: 0; 
+    margin: 0; padding: 0; 
+    box-sizing: border-box; 
+}
+
+/* Restaura o foco visível para navegação por teclado */
+*:focus-visible {
+     outline: 3px solid var(--sw-cor-foco); 
+     outline-offset: 3px; 
+     border-radius: 4px;
+}
+
+/* Oculta visualmente, mas mantém legível para leitores de ecrã */
+.leitor-ecra { 
+    position: absolute; 
+    width: 1px; 
+    height: 1px; 
     padding: 0; 
-    box-sizing: border-box;
+    margin: -1px; 
+    overflow: hidden; 
+    clip: rect(0, 0, 0, 0); 
+    border: 0; 
 }
 
-body { 
-    width: 1100px; 
-    font-family: "Comic Sans MS", cursive; 
-    font-size: 13px; 
-    color: #999; 
-    background: #fff; 
+
+/* =========================================
+   VARIÁVEIS GLOBAIS (Passo 3 - Etapa 5)
+========================================= */
+:root {
+  /* Cores com prefixo da equipa (--sw-) */
+  --sw-cor-primaria: #3b7fc0;
+  --sw-cor-secundaria: #5d8fbf;
+  --sw-cor-alerta: red;
+  --sw-cor-sucesso: green;
+  --sw-cor-cinza-claro: #ccc;
+  --sw-cor-cinza-escuro: #bbb;
+  --sw-cor-borda: #eee;
+  --sw-cor-fundo-rodape: #f9f9f9;
+  --sw-cor-foco: #0a62a8;
+  --sw-cor-amarelo: #ffeb3b;
+
+  /* Espaçamentos Relativos (rem) */
+  --sw-espaco-pp: 0.3125rem; /* 5px */
+  --sw-espaco-p: 0.625rem;   /* 10px */
+  --sw-espaco-m: 1.25rem;    /* 20px */
+  --sw-espaco-g: 1.875rem;   /* 30px */
+
+  /* Tipografia Relativa (rem) */
+  --sw-fonte-pequena: 0.625rem; /* 10px */
+  --sw-fonte-media: 0.75rem;    /* 12px */
+  --sw-fonte-base: 1rem;        /* 16px */
 }
 
-#topo { 
-    background: #0a62a8; 
-    height: 90px; 
+/* =========================================
+   ESTILOS BASE E UTILITÁRIOS
+========================================= */
+body {
+   background-color: #ffffff;
+   font-family: sans-serif;
+   font-size: var(--sw-fonte-base);
+   color: #333;
 }
 
-div#topo table tr td div.logo span b { 
-    font-size: 30px !important; 
-    color: #3b7fc0 !important; 
+.texto-azul-pequeno { 
+    font-size: var(--sw-fonte-pequena); 
+    color: var(--sw-cor-secundaria); 
 }
 
-.aba { 
-    float: left; 
-    width: 250px; 
-    padding: 15px; 
+.texto-cinza-pequeno {
+    font-size: var(--sw-fonte-pequena);
+    color: var(--sw-cor-cinza-claro);
+    display: block;
+    text-transform: uppercase;
+    font-weight: bold;  
+}
+
+.texto-descritivo {
+    color: var(--sw-cor-cinza-escuro); 
+}
+
+.texto-cinza-claro {
+    color: var(--sw-cor-cinza-claro); 
+}
+
+.texto-sucesso {
+    color: var(--sw-cor-sucesso);
+    font-weight: bold; 
+}
+
+.alerta-promocao {
+    color: var(--sw-cor-alerta);
+    font-weight: bold;
+    padding: var(--sw-espaco-p) 0; 
+}
+
+.link-filtro, .link-pedido {
+    cursor: pointer;
+    color: var(--sw-cor-primaria); 
+}
+
+/* Botoes */
+.btn-copiar {
+    color: var(--sw-cor-amarelo);
+    cursor: pointer;
+    font-size: var(--sw-fonte-media); 
+}
+
+.botao {
+    cursor: pointer; 
+    padding: var(--sw-espaco-p); 
+    display: inline-block; 
     background: #eee; 
-    color: #ccc; 
-    cursor: pointer; 
+    border: 1px solid var(--sw-cor-borda); 
+    border-radius: 4px; 
 }
 
-.aba:hover { 
-    background: #0a62a8; 
-    color: #3b7fc0; 
+.btn-orcamento { 
+    background: #fff; 
+    color: var(--sw-cor-amarelo); 
+    border: 1px solid var(--sw-cor-amarelo); 
+    margin-left: var(--sw-espaco-p); 
 }
 
-.botao { 
-    background: #ffeb3b; 
-    color: #fff; 
-    padding: 8px; 
-    text-align: center; 
-    cursor: pointer; 
-    width: 200px; 
+.btn-limpar { 
+    background: var(--sw-cor-borda); 
+    color: #999; 
 }
 
-.botao:hover { 
-    background: #ffd600 !important; 
+/* Sinais visuais e Animação */
+.verde { 
+    width: 0.625rem; 
+    height: 0.625rem; 
+    background: var(--sw-cor-sucesso); 
+    display: inline-block; 
 }
 
-h1 { 
-    font-size: 40px; 
-    color: #ddd; 
-}
-
-h1 { 
-    font-size: 22px !important; 
-}
-
-.titulo { 
-    font-size: 18px !important; 
-    color: #aaa !important; 
-}
-
-#produtos .card h4 { 
-    color: #aaa; 
-    font-size: 14px; 
-}
-
-.card h4 { 
-    color: #000 !important; 
+.vermelho { 
+    width: 0.625rem; 
+    height: 0.625rem; 
+    background: var(--sw-cor-alerta); 
+    display: inline-block; 
 }
 
 .piscar { 
@@ -82,191 +154,104 @@ h1 {
     100% { opacity: 1; } 
 }
 
-.verde { 
-    width: 10px; 
-    height: 10px; 
-    background: green; 
-    display: inline-block; 
+/* =========================================
+   ESTRUTURA E COMPONENTES (Passo 4 Preparação)
+========================================= */
+.oculto { 
+    display: none !important; 
 }
 
-.vermelho { 
-    width: 10px; 
-    height: 10px; 
-    background: red; 
-    display: inline-block; 
+.visivel { 
+    display: block !important; 
 }
 
-.resposta { 
-    display: none; 
-    color: #ccc; 
+.limpa-float { 
+    clear: both; 
 }
 
-input, textarea { 
-    border: 1px solid #f5f5f5; 
-    width: 300px; 
-    height: 30px; 
-    color: #ccc; 
-}
-
-@media (max-width: 1200px) { 
-    #menu { display: none; } 
-}
-
-/* Classes Semânticas que substituíram as tags <font> e <marquee> */
-.texto-azul-pequeno { 
-    font-size: 10px; 
-    color: #5d8fbf; 
-}
-
-.texto-cinza-pequeno { 
-    font-size: 10px; 
-    color: #ccc; 
-    display: block; 
-    text-transform: uppercase; 
-    font-weight: bold; 
-}
-
-.texto-descritivo { 
-    color: #bbb; 
-}
-
-.texto-cinza-claro { 
-    color: #ccc; 
-}
-
-.alerta-promocao { 
-    color: red; 
-    font-weight: bold; 
-    padding: 10px 0; 
-}
-
-.link-filtro { 
-    cursor: pointer; 
-    color: #ccc; 
-}
-
-.btn-copiar { 
-    color: #ffeb3b; 
-    cursor: pointer; 
-    font-size: 12px; 
-}
-
-.btn-orcamento { 
-    float: left; 
-    margin-left: 10px; 
-    background: #fff; 
-    color: #ffeb3b; 
-    border: 1px solid #ffeb3b; 
-}
-
-.btn-limpar { 
-    background: #eee; 
-    color: #999; 
-}
-
-/* Layout Moderno (Substituição das tags <table>) */
+/* Grid e Flexbox com unidades relativas */
 .flex-header { 
     display: flex; 
     align-items: center; 
     justify-content: space-between; 
-    width: 1100px; 
-    height: 90px; 
+    max-width: 68.75rem; /* 1100px */ 
+    margin: 0 auto; 
+    min-height: 5.625rem; 
+    padding: 0 var(--sw-espaco-m); 
 }
 
 .header-esq { 
     display: flex; 
     align-items: center; 
-    gap: 20px; 
+    gap: var(--sw-espaco-m); 
 }
 
-.header-dir { 
-    color: #3b7fc0; 
+.menu-navegacao { 
+    display: flex; 
+    gap: var(--sw-espaco-m); 
+    justify-content: center; 
+    margin-top: var(--sw-espaco-m); 
+}
+
+.aba { 
     cursor: pointer; 
+    padding: var(--sw-espaco-p); 
+    font-weight: bold; 
+}
+
+main { 
+    max-width: 68.75rem; 
+    margin: 0 auto; 
+    padding: var(--sw-espaco-m); 
 }
 
 .grid-layout { 
     display: grid; 
-    grid-template-columns: 220px 1fr; 
-    margin-bottom: 20px; 
+    grid-template-columns: 13.75rem 1fr; 
+    margin-bottom: var(--sw-espaco-m); 
+    gap: var(--sw-espaco-m); 
 }
 
 .grid-produtos-venda { 
     display: grid; 
-    grid-template-columns: 1fr 1fr 1fr; 
-    gap: 20px; 
-    border: 1px solid #ccc; 
-    padding: 15px; 
+    grid-template-columns: repeat(3, 1fr); 
+    gap: var(--sw-espaco-m); 
+    border: 1px solid var(--sw-cor-cinza-claro); 
+    padding: var(--sw-espaco-m); 
 }
 
 .grid-contato { 
     display: grid; 
     grid-template-columns: 1fr 1fr; 
-    gap: 20px; 
+    gap: var(--sw-espaco-m); 
     width: 100%; 
 }
 
-/* Acessibilidade: Oculta visualmente, mas mantém legível para leitores de ecrã */
-.leitor-ecra { 
-    position: absolute; 
-    width: 1px; 
-    height: 1px; 
-    padding: 0; 
-    margin: -1px; 
-    overflow: hidden; 
-    clip: rect(0, 0, 0, 0); 
-    border: 0; 
-}
-
-/* Acessibilidade: Restaura o foco visível para navegação por teclado */
-*:focus-visible {
-     outline: 3px solid #0a62a8; 
-     outline-offset: 3px; 
-     border-radius: 4px;
-}
-
- /* --- ETAPA 5: SEPARAÇÃO DE RESPONSABILIDADES --- */
-/* Classes de Utilidade e Layout */
-body { 
-    background-color: #ffffff;
-}
-
-.oculto {
-     display: none !important;
-}
-
-.visivel { 
-    display: block !important;
-}
-
-.link-pedido {
-     color: #3b7fc0; 
-     cursor: pointer; 
-}
-
-.btn-flutuante { 
-    float: left;
-}
-
-.limpa-float {
-     clear: both; 
-}
-
 .caixa-pedido { 
-    border: 1px solid #eee; 
-    padding: 10px; 
-    margin-top: 20px;
+    border: 1px solid var(--sw-cor-borda); 
+    padding: var(--sw-espaco-p); 
+    margin-top: var(--sw-espaco-m); 
 }
 
-.texto-sucesso {
-     color: green; 
-     font-weight: bold; 
+/* Inputs e Formulário */
+input, textarea, select { 
+    border: 1px solid var(--sw-cor-borda); 
+    width: 100%; 
+    padding: var(--sw-espaco-p); 
+    margin-bottom: var(--sw-espaco-p); 
+    border-radius: 4px; 
 }
 
-/* Estilo centralizado do Rodapé */
-.rodape {
-  background-color: #f9f9f9;
-  padding: 20px;
-  color: #ddd;
-  font-size: 10px;
-  text-align: center;
+textarea { 
+    min-height: 6.25rem; 
+}
+
+/* Rodapé */
+.rodape { 
+    background-color: var(--sw-cor-fundo-rodape); 
+    padding: var(--sw-espaco-m); 
+    color: var(--sw-cor-cinza-escuro); 
+    font-size: var(--sw-fonte-pequena); 
+    text-align: center; 
+    margin-top: var(--sw-espaco-g); 
 }

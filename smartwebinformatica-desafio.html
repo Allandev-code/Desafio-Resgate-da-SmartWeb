@@ -8,6 +8,8 @@
 </head>
 
 <body>
+  <div id="anunciador" class="leitor-ecra" aria-live="polite"></div>
+
   <!-- CABEÇALHO SEMÂNTICO -->
   <header id="topo" class="flex-header">
     <div class="header-esq">
@@ -120,7 +122,7 @@
 
       <div id="pedido" class="caixa-pedido">
         <h2>Meu pedido</h2>
-        <p class="espaco-abaixo-pequeno">Total: <span id="total" class="texto-sucesso">R$ 0,00</span></p>
+        <p class="espaco-abaixo-pequeno">Total: <span id="total" class="texto-sucesso" aria-live="polite">R$ 0,00</span></p>
         <div class="grupo-botoes">
           <button class="botao btn-acao" data-alvo="contato">Solicitar pedido</button>
           <button id="btn-limpar-pedido" class="botao btn-limpar">Limpar</button>
@@ -164,7 +166,7 @@
             
             <button type="submit" class="botao btn-enviar">Montar mensagem</button>
           </form>
-          <div id="resultado" class="texto-cinza-claro espaco-topo-pequeno"></div>
+          <div id="resultado" class="texto-cinza-claro espaco-topo-pequeno" aria-live="polite"></div>
         </div>
         
         <div class="info-contato">

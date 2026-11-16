@@ -17,12 +17,33 @@ const produtos = [
 let carrinho = [];
 let linhaAtual = "todas";
 
-function mostraAba(aba) {
-    document.getElementById('empresa').classList.add('oculto');
-    document.getElementById('produtos').classList.add('oculto');
-    document.getElementById('contato').classList.add('oculto');
-    document.getElementById('faq').classList.add('oculto');
+/* =========================================
+   FUNÇÕES DE ACESSIBILIDADE (Passo 6)
+========================================= */
+// Envia mensagens dinâmicas para leitores de ecrã sem mostrar no layout
+function anunciarParaLeitor(mensagem) {
+    const anunciador = document.getElementById("anunciador");
+    if (anunciador) {
+        anunciador.innerText = mensagem;
+        // Limpa após 3s para evitar acumulação
+        setTimeout(() => { anunciador.innerText = ""; }, 3000);
+    }
+}
+
+
+/* =========================================
+   LÓGICA DA INTERFACE E PRODUTOS
+========================================= */
+function mostraAba(abaId) {
+    // Esconde todas as abas
+    document.querySelectorAll('.seccao-aba').forEach(seccao => {
+        seccao.classList.remove('visivel');
+        seccao.classList.add('oculto');
+    });
+    // Mostra a aba selecionada
     document.getElementById(abaId).classList.remove('oculto');
+    document.getElementById(abaId).classList.add('visivel');
+    anunciarParaLeitor(`Aba ${abaId} selecionada`);
 }
 
 function montaCatalogo(termoBusca = "") {
@@ -37,14 +58,16 @@ function montaCatalogo(termoBusca = "") {
   } else {
     produtosFiltrados.forEach((produto) => {
       let realIndex = produtos.findIndex(p => p.sku === produto.sku);
-      html = html + "<div class='card' style='float:left;width:240px;height:330px;margin:5px;border:1px solid #eee'>";
-      html = html + "<img src='produto" + realIndex + ".png' width='120' alt=''>";
-      html = html + "<font size='1' color='#ccc'>" + produto.sku + "</font><br>";
-      html = html + "<h4>" + produto.nome + "</h4>";
-      html = html + "<font size='2' color='#bbb'>" + produto.desc + "</font><br><br>";
-      html = html + "<b style='font-size:20px'>R$ " + produto.preco.toFixed(2) + "</b><br>";
-      html = html + "<button class='botao' onclick='adiciona(" + realIndex + ")'>Adicionar ao pedido</button>";
-      html = html + "</div>";
+      // HTML limpo sem style inline
+      html += `<div class='card-produto' style='border:1px solid var(--sw-cor-borda); padding:10px; border-radius:4px;'>
+                 <img src='https://via.placeholder.com/120?text=Produto' width='120' alt=''>
+                 <span class='texto-cinza-claro' style='display:block; font-size:0.75rem'>${produto.sku}</span>
+                 <h4 style='margin: 8px 0'>${produto.nome}</h4>
+                 <p class='texto-descritivo' style='font-size:0.875rem'>${produto.desc}</p>
+                 <br>
+                 <b style='font-size:1.25rem; color:var(--sw-cor-primaria)'>R$ ${produto.preco.toFixed(2)}</b><br>
+                 <button class='botao' style='margin-top:10px; width:100%' onclick='adiciona(${realIndex})'>Adicionar ao pedido</button>
+               </div>`;
     });
   }
   document.getElementById("catalogo").innerHTML = html;
@@ -53,22 +76,28 @@ function montaCatalogo(termoBusca = "") {
 function filtra(linha) {
   linhaAtual = linha;
   montaCatalogo();
+  anunciarParaLeitor(`Filtro aplicado: ${linha}`);
 }
 
 function busca() {
   const termo = document.getElementById("busca").value;
   document.getElementById("resultadoBusca").innerHTML = termo ? "Você buscou por: <b>" + termo + "</b>" : "";
   montaCatalogo(termo);
+  anunciarParaLeitor(`Resultados atualizados para a busca: ${termo}`);
 }
 
 function adiciona(index) {
-  carrinho.push(produtos[index]);
+  const produto = produtos[index];
+  carrinho.push(produto);
   atualizaCarrinho();
+  // Aviso dinâmico de que algo foi para o carrinho
+  anunciarParaLeitor(`${produto.nome} adicionado ao pedido. Total agora é ${document.getElementById("total").innerText}`);
 }
 
 function limpar() {
   carrinho = [];
   atualizaCarrinho();
+  anunciarParaLeitor("O carrinho de compras foi limpo.");
 }
 
 function atualizaCarrinho() {
@@ -91,31 +120,102 @@ function enviar(evento) {
   if (!msg) erros.push("A mensagem não pode estar vazia.");
 
   if (erros.length > 0) {
-    resultado.innerHTML = "<span style='color:red'>" + erros.join("<br>") + "</span>";
+    resultado.innerHTML = `<span class='texto-alerta' style='color:var(--sw-cor-alerta)'>${erros.join("<br>")}</span>`;
+    // Como tem aria-live, o erro será lido
   } else {
-    resultado.innerHTML = "<span style='color:green'>Mensagem montada com sucesso!<br>Nome: " + nome + "<br>Email: " + email + "<br>Mensagem: " + msg + "</span>";
+    resultado.innerHTML = `<span class='texto-sucesso' style='color:var(--sw-cor-sucesso)'>Mensagem montada com sucesso!<br>Nome: ${nome}<br>Email: ${email}<br>Mensagem: ${msg}</span>`;
   }
 }
 
 function copiar(id) {
   const texto = document.getElementById(id).innerText;
   navigator.clipboard.writeText(texto).then(() => {
-    alert("Copiado com sucesso!"); 
+    // Alerta em vez de popup irritante
+    anunciarParaLeitor(`Dado copiado para a área de transferência: ${texto}`);
+    // Opcional: Feedback visual rápido no botão (Substitui o botão por "Copiado")
+    const btn = document.querySelector(`button[data-copia="${id}"]`);
+    if(btn){
+        const textoOriginal = btn.innerText;
+        btn.innerText = "Copiado!";
+        setTimeout(()=> btn.innerText = textoOriginal, 2000);
+    }
   });
 }
 
 function configuraFAQ() {
-    const perguntas = document.querySelectorAll("#faq h2");
+    const perguntas = document.querySelectorAll(".item-faq h2");
     perguntas.forEach(pergunta => {
-        pergunta.addEventListener("click", () => {
-            const resposta = pergunta.nextElementSibling;
-            // Alterna a classe 'visivel' em vez de injetar CSS direto
-            resposta.classList.toggle('visivel');
+        // Torna a pergunta clicável por teclado no FAQ
+        pergunta.setAttribute("tabindex", "0");
+        pergunta.setAttribute("role", "button");
+        
+        pergunta.addEventListener("click", () => alternarFaq(pergunta));
+        pergunta.addEventListener("keypress", (e) => {
+            if(e.key === "Enter" || e.key === " ") {
+                e.preventDefault();
+                alternarFaq(pergunta);
+            }
         });
     });
 }
 
+function alternarFaq(pergunta){
+    const resposta = pergunta.nextElementSibling;
+    const estaVisivel = resposta.classList.contains('visivel');
+    
+    if(estaVisivel){
+        resposta.classList.remove('visivel');
+        pergunta.setAttribute("aria-expanded", "false");
+    } else {
+        resposta.classList.add('visivel');
+        pergunta.setAttribute("aria-expanded", "true");
+    }
+}
+
+function configuraBotoesHTML() {
+    // Botoes das abas
+    document.querySelectorAll('button.aba').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const aba = e.target.getAttribute('data-alvo');
+            mostraAba(aba);
+        });
+    });
+
+    // Botoes de filtro
+    document.querySelectorAll('button.link-filtro').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const filtro = e.target.getAttribute('data-filtro');
+            filtra(filtro);
+        });
+    });
+    
+    // Botao de ir para pedido e limpar
+    const btnPedido = document.querySelector('.btn-acao');
+    if(btnPedido) btnPedido.addEventListener('click', () => mostraAba('contato'));
+    
+    const btnLimpar = document.getElementById('btn-limpar-pedido');
+    if(btnLimpar) btnLimpar.addEventListener('click', limpar);
+
+    // Formulario contato
+    const form = document.getElementById('form-contato');
+    if(form) form.addEventListener('submit', enviar);
+
+    // Botoes de copiar
+    document.querySelectorAll('.btn-copiar').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+            const idCopia = e.target.getAttribute('data-copia');
+            copiar(idCopia);
+        });
+    });
+    
+    // Campo de busca
+    const inputBusca = document.getElementById('busca');
+    if(inputBusca) inputBusca.addEventListener('input', busca);
+}
+
+
 document.addEventListener("DOMContentLoaded", () => {
   montaCatalogo();
   configuraFAQ();
+  configuraBotoesHTML();
 });

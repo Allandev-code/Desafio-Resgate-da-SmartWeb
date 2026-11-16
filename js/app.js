@@ -58,7 +58,6 @@ function montaCatalogo(termoBusca = "") {
   } else {
     produtosFiltrados.forEach((produto) => {
       let realIndex = produtos.findIndex(p => p.sku === produto.sku);
-      // HTML limpo sem style inline
       html += `<div class='card-produto' style='border:1px solid var(--sw-cor-borda); padding:10px; border-radius:4px;'>
                  <img src='https://via.placeholder.com/120?text=Produto' width='120' alt=''>
                  <span class='texto-cinza-claro' style='display:block; font-size:0.75rem'>${produto.sku}</span>
@@ -66,7 +65,7 @@ function montaCatalogo(termoBusca = "") {
                  <p class='texto-descritivo' style='font-size:0.875rem'>${produto.desc}</p>
                  <br>
                  <b style='font-size:1.25rem; color:var(--sw-cor-primaria)'>R$ ${produto.preco.toFixed(2)}</b><br>
-                 <button class='botao' style='margin-top:10px; width:100%' onclick='adiciona(${realIndex})'>Adicionar ao pedido</button>
+                 <button class='botao btn-adicionar' data-index='${realIndex}' style='margin-top:10px; width:100%'>Adicionar ao pedido</button>
                </div>`;
     });
   }
@@ -211,6 +210,17 @@ function configuraBotoesHTML() {
     // Campo de busca
     const inputBusca = document.getElementById('busca');
     if(inputBusca) inputBusca.addEventListener('input', busca);
+
+    // Delegação de eventos para os botões "Adicionar ao pedido" (Passo 3)
+    const catalogoDiv = document.getElementById('catalogo');
+    if (catalogoDiv) {
+        catalogoDiv.addEventListener('click', (e) => {
+            if (e.target.classList.contains('btn-adicionar')) {
+                const index = e.target.getAttribute('data-index');
+                adiciona(index);
+            }
+        });
+    }
 }
 
 

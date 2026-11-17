@@ -1,3 +1,4 @@
+// Autor: Luís Miguel de Carvalho Pereira - FATESE - Curso: Análise e Desenvolvimento de Sistemas - Turma: 2026.15.11
 const produtos = [
   {nome: "Notebook Pro 14\", i5, 16 GB, SSD 512 GB", sku: "NB-PRO14", linha: "comp", preco: 4290, desc: "Tela Full HD, teclado com numérico reduzido e bateria para o dia todo."},
   {nome: "Desktop Office, i5, 8 GB, SSD 256 GB", sku: "DT-OFFICE", linha: "comp", preco: 2890, desc: "Torre compacta para caixa e atendimento, com Windows 11 Pro."},
@@ -67,15 +68,19 @@ function montaCatalogo(termoBusca = "") {
   } else {
     produtosFiltrados.forEach((produto) => {
       let realIndex = produtos.findIndex(p => p.sku === produto.sku);
-      html += `<div class='card-produto' style='border:1px solid var(--sw-cor-borda); padding:10px; border-radius:4px;'>
-                 <img src='https://via.placeholder.com/120?text=Produto' width='120' alt=''>
-                 <span class='texto-cinza-claro' style='display:block; font-size:0.75rem'>${produto.sku}</span>
-                 <h4 style='margin: 8px 0'>${produto.nome}</h4>
-                 <p class='texto-descritivo' style='font-size:0.875rem'>${produto.desc}</p>
-                 <br>
-                 <b style='font-size:1.25rem; color:var(--sw-cor-primaria)'>R$ ${produto.preco.toFixed(2)}</b><br>
-                 <button class='botao btn-adicionar' data-index='${realIndex}' style='margin-top:10px; width:100%'>Adicionar ao pedido</button>
-               </div>`;
+      // Geração do HTML utilizando o novo bloco .img-container
+      html += `
+        <div class='card-produto'>
+           <div class='img-container'>
+              <img src='imagens/produto${realIndex}.png' alt='Ícone do produto ${produto.nome}'>
+           </div>
+           <span class='texto-cinza-pequeno'>${produto.sku}</span>
+           <h4 class='titulo-produto'>${produto.nome}</h4>
+           <p class='texto-descritivo'>${produto.desc}</p>
+           <b class='preco-produto'>R$ ${produto.preco.toFixed(2)}</b>
+           <button class='botao btn-adicionar' data-index='${realIndex}'>Adicionar ao pedido</button>
+        </div>
+      `;
     });
   }
   document.getElementById("catalogo").innerHTML = html;
@@ -208,6 +213,17 @@ function configuraBotoesHTML() {
     
     const btnLimpar = document.getElementById('btn-limpar-pedido');
     if(btnLimpar) btnLimpar.addEventListener('click', limpar);
+
+    // Botões da página inicial (A empresa)
+    const btnVerProdutos = document.querySelector('#empresa .botao:not(.btn-orcamento)');
+    const btnPedirOrcamento = document.querySelector('.btn-orcamento');
+
+    if (btnVerProdutos) {
+        btnVerProdutos.addEventListener('click', () => mostraAba('produtos'));
+    }
+    if (btnPedirOrcamento) {
+        btnPedirOrcamento.addEventListener('click', () => mostraAba('contato'));
+    }
 
     // Formulario contato
     const form = document.getElementById('form-contato');

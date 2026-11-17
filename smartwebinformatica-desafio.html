@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+<!-- Autor: Allan Lima Ramalheira - FATESE - Curso: Análise e Desenvolvimento de Sistemas - Turma: 2026.15.11 -->
+<!DOCTYPE html> 
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8">
@@ -10,43 +11,41 @@
 <body>
   <div id="anunciador" class="leitor-ecra" aria-live="polite"></div>
 
-  <!-- CABEÇALHO SEMÂNTICO -->
-  <header id="topo" class="flex-header">
-    <div class="header-esq">
-      <img src="logo.png" width="60" height="60" alt="Logo da SmartWeb">
-      <div class="logo">
-        <span><strong>SmartWeb</strong></span>
-        <span class="texto-azul-pequeno">INFORMÁTICA E REDES</span>
-      </div>
-    </div>
-    <button id="btn-meu-pedido" class="link-pedido">Meu pedido (<span id="qtd">0</span>)</button>
-  </header>
+  <!-- CABEÇALHO -->
+    <header class="flex-header">
+        <a href="#" class="logo-link">
+            <img src="imagens/logo.png" alt="SmartWeb" class="img-fluida logo-site">
+        </a>
+        <button class="link-pedido btn-meu-pedido" data-alvo="contato">
+            Meu pedido <span id="qtd">0</span>
+        </button>
+    </header>
 
-  <!-- NAVEGAÇÃO SEMÂNTICA -->
-  <nav id="menu" class="menu-navegacao">
-    <button class="aba" data-alvo="empresa">A empresa</button>
-    <button class="aba" data-alvo="produtos">Produtos</button>
-    <button class="aba" data-alvo="contato">Contato</button>
-    <button class="aba" data-alvo="faq">Perguntas frequentes</button>
-  </nav>
+    <!-- MENU DE NAVEGAÇÃO -->
+    <nav class="menu-navegacao">
+        <button class="aba ativa" data-alvo="empresa">A empresa</button>
+        <button class="aba" data-alvo="produtos">Produtos</button>
+        <button class="aba" data-alvo="contato">Contato</button>
+        <button class="aba" data-alvo="faq">Perguntas frequentes</button>
+    </nav>
 
-  <!-- CONTEÚDO PRINCIPAL -->
-  <main class="conteudo-principal">
-    
-    <!-- EMPRESA -->
-    <section id="empresa" class="seccao-aba visivel">
-      <div class="alerta-promocao">*** PROMOÇÃO IMPERDÍVEL ***</div>
-      <span class="texto-cinza-pequeno">LOJA DE INFORMÁTICA E INFRAESTRUTURA DE REDE</span>
-      <h1>Equipamento certo para a sua empresa funcionar amanhã cedo.</h1>
-      
-      <p class="texto-descritivo espaco-abaixo">A SmartWeb vende computadores, redes e proteção de dados para pequenas e médias empresas. Indicamos o que o seu negócio usa de verdade e deixamos o resto de fora.</p>
-      
-      <div class="grupo-botoes espaco-abaixo-grande">
-        <button class="botao btn-acao" data-alvo="produtos">Ver produtos</button>
-        <button class="botao btn-orcamento btn-acao" data-alvo="contato">Pedir orçamento</button>
-      </div>
+    <main class="conteudo-principal">
+        <!-- ABA A EMPRESA -->
+        <section id="empresa" class="seccao-aba visivel">
+            
+            <h1 class="titulo-gigante">Equipamento certo para a sua<br>empresa funcionar amanhã cedo.</h1>
+            
+            <p class="subtitulo-gigante">A SmartWeb vende computadores, redes e proteção de dados para pequenas e médias empresas. Indicamos o que o seu negócio usa de verdade e deixamos o resto de fora.</p>
+            
+            <div class="grupo-botoes">
+                <button class="botao btn-solido" onclick="mostraAba('produtos')">Ver produtos</button>
+                <button class="botao btn-vazado" onclick="mostraAba('contato')">Pedir orçamento</button>
+            </div>
 
-      <img src="switch-24-portas.jpg" width="1100" height="120" alt="Painel frontal de um switch de rede de 24 portas" class="img-fluida">
+            <!-- Contentor azul escuro para o switch -->
+            <div class="img-switch-home">
+                <img src="imagens/switch-24-portas.png" alt="Painel frontal de um switch de rede de 24 portas" class="img-fluida">
+            </div>
       
       <div class="status-portas espaco-abaixo-grande">
         Status das portas: 
@@ -164,7 +163,7 @@
               <textarea id="msg" placeholder="Mensagem" class="input-padrao textarea-padrao"></textarea>
             </div>
             
-            <button type="submit" class="botao btn-enviar">Montar mensagem</button>
+            <button type="submit" class="botao btn-enviar">Enviar mensagem</button>
           </form>
           <div id="resultado" class="texto-cinza-claro espaco-topo-pequeno" aria-live="polite"></div>
         </div>
@@ -230,6 +229,11 @@
       <div class="item-faq">
         <h2>Posso trocar um produto?</h2>
         <div class="resposta">Compras feitas pelo site podem ser devolvidas em até 7 dias corridos após o recebimento, com o produto lacrado e sem uso.</div>
+      </div>
+
+      <div>
+        <h2>Vocês oferecem suporte técnico após a compra?</h2>
+        <div class="resposta">Sim. Além da instalação, oferecemos pacotes de suporte técnico mensal e atendimento avulso para garantir que a sua rede e os seus equipamentos continuem funcionando, com máxima performance e segurança.</div>
       </div>
     </section>
   </main>

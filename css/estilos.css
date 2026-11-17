@@ -1,3 +1,7 @@
+/* Autor: Leticia Gomes Vilar - FATESE - Curso: Análise e Desenvolvimento de Sistemas - Turma: 2026.15.11 */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
 /* =========================================
    RESET E ACESSIBILIDADE
 ========================================= */
@@ -25,33 +29,33 @@
     border: 0; 
 }
 
-
 /* =========================================
    VARIÁVEIS GLOBAIS (Passo 3 - Etapa 5)
 ========================================= */
 :root {
   /* Cores com prefixo da equipa (--sw-) */
-  --sw-cor-primaria: #255a8f; /* Era #3b7fc0 */
-  --sw-cor-secundaria: #396a99; /* Era #5d8fbf */
-  --sw-cor-alerta: #cc0000; /* Era red (#ff0000) */
-  --sw-cor-sucesso: #007300; /* Era green */
-  --sw-cor-cinza-claro: #595959; /* Era #ccc (chumbava redondamente) */
-  --sw-cor-cinza-escuro: #404040; /* Era #bbb */
-  --sw-cor-borda: #ccc; /* Bordas não exigem 4.5:1, mantido claro */
-  --sw-cor-fundo-rodape: #f0f0f0;
+  --sw-cor-primaria: #255a8f; 
+  --sw-cor-secundaria: #396a99; 
+  --sw-cor-alerta: #cc0000; 
+  --sw-cor-sucesso: #007300; 
+  --sw-cor-cinza-claro: #595959; 
+  --sw-cor-cinza-escuro: #404040; 
+  --sw-cor-borda: #e5e5e5; 
+  --sw-cor-fundo-rodape: #f8f9fa;
   --sw-cor-foco: #0a62a8;
-  --sw-cor-amarelo: #997300; /* Era #ffeb3b (ilegível no branco) */
+  --sw-cor-amarelo: #997300; 
 
   /* Espaçamentos Relativos (rem) */
-  --sw-espaco-pp: 0.3125rem; /* 5px */
-  --sw-espaco-p: 0.625rem;   /* 10px */
-  --sw-espaco-m: 1.25rem;    /* 20px */
-  --sw-espaco-g: 1.875rem;   /* 30px */
+  --sw-espaco-pp: 0.3125rem; 
+  --sw-espaco-p: 0.625rem;   
+  --sw-espaco-m: 1.25rem;    
+  --sw-espaco-g: 1.875rem;   
 
   /* Tipografia Relativa (rem) */
-  --sw-fonte-pequena: 0.625rem; /* 10px */
-  --sw-fonte-media: 0.75rem;    /* 12px */
-  --sw-fonte-base: 1rem;        /* 16px */
+  --sw-fonte-pequena: 0.625rem; 
+  --sw-fonte-media: 0.75rem;    
+  --sw-fonte-base: 1rem;        
+  --sw-fonte: 'Inter', sans-serif;
 }
 
 /* =========================================
@@ -59,251 +63,342 @@
 ========================================= */
 body {
    background-color: #ffffff;
-   font-family: sans-serif;
+   font-family: var(--sw-fonte);
    font-size: var(--sw-fonte-base);
    color: #333;
+   line-height: 1.6;
 }
 
-.texto-azul-pequeno { 
-    font-size: var(--sw-fonte-pequena); 
-    color: var(--sw-cor-secundaria); 
-}
+.texto-azul-pequeno { font-size: var(--sw-fonte-pequena); color: var(--sw-cor-secundaria); }
+.texto-cinza-pequeno { font-size: var(--sw-fonte-pequena); color: var(--sw-cor-cinza-claro); display: block; text-transform: uppercase; font-weight: bold; }
+.texto-descritivo { color: var(--sw-cor-cinza-escuro); }
+.texto-cinza-claro { color: var(--sw-cor-cinza-claro); }
+.texto-sucesso { color: var(--sw-cor-sucesso); font-weight: bold; }
+.alerta-promocao { color: var(--sw-cor-alerta); font-weight: bold; padding: var(--sw-espaco-p) 0; display: inline-block; }
 
-.texto-cinza-pequeno {
-    font-size: var(--sw-fonte-pequena);
-    color: var(--sw-cor-cinza-claro);
-    display: block;
-    text-transform: uppercase;
-    font-weight: bold;  
-}
+/* Botoes base */
+.btn-copiar { color: var(--sw-cor-amarelo); cursor: pointer; font-size: var(--sw-fonte-media); border: none; background: none; }
+.botao { cursor: pointer; padding: 0.6rem 1rem; display: inline-block; background: #eee; border: 1px solid var(--sw-cor-borda); border-radius: 4px; font-family: var(--sw-fonte); font-weight: 500; transition: all 0.2s ease; }
+.btn-orcamento { background: #fff; color: var(--sw-cor-amarelo); border: 1px solid var(--sw-cor-amarelo); margin-left: var(--sw-espaco-p); }
+.btn-limpar { background: #f1f1f1; color: #666; border: none; }
 
-.texto-descritivo {
-    color: var(--sw-cor-cinza-escuro); 
-}
-
-.texto-cinza-claro {
-    color: var(--sw-cor-cinza-claro); 
-}
-
-.texto-sucesso {
-    color: var(--sw-cor-sucesso);
-    font-weight: bold; 
-}
-
-.alerta-promocao {
-    color: var(--sw-cor-alerta);
-    font-weight: bold;
-    padding: var(--sw-espaco-p) 0; 
-}
-
-.link-filtro, .link-pedido {
-    cursor: pointer;
-    color: var(--sw-cor-primaria); 
-}
-
-/* Botoes */
-.btn-copiar {
-    color: var(--sw-cor-amarelo);
-    cursor: pointer;
-    font-size: var(--sw-fonte-media); 
-}
-
-.botao {
-    cursor: pointer; 
-    padding: var(--sw-espaco-p); 
-    display: inline-block; 
-    background: #eee; 
-    border: 1px solid var(--sw-cor-borda); 
-    border-radius: 4px; 
-}
-
-.btn-orcamento { 
-    background: #fff; 
-    color: var(--sw-cor-amarelo); 
-    border: 1px solid var(--sw-cor-amarelo); 
-    margin-left: var(--sw-espaco-p); 
-}
-
-.btn-limpar { 
-    background: var(--sw-cor-borda); 
-    color: #999; 
-}
-
-/* Limpa o estilo padrão do botão nativo para se parecer com links/abas */
-button.aba, button.link-filtro, button.link-pedido {
-  background: none;
-  border: none;
-  font: inherit;
-  color: inherit;
-}
-
-button.link-filtro, button.link-pedido {
-  color: var(--sw-cor-primaria);
-  text-decoration: underline; /* Ajuda a identificar que é clicável */
-}
+/* Limpa o estilo padrão do botão nativo para abas e links */
+button.aba, button.link-pedido { background: none; border: none; font: inherit; color: inherit; cursor: pointer; }
+button.link-pedido { color: var(--sw-cor-primaria); text-decoration: underline; }
 
 /* Sinais visuais */
-/* Verde = Círculo com V | Vermelho = Quadrado com X (Acessibilidade - Passo 4) */
-.verde { 
-    width: 1.2rem; 
-    height: 1.2rem; 
-    background: var(--sw-cor-sucesso); 
-    display: inline-flex; 
-    align-items: center; 
-    justify-content: center; 
-    border-radius: 50%; 
-    color: white; 
-    font-size: 0.7rem; 
-    font-weight: bold; 
-}
+.verde { width: 1.2rem; height: 1.2rem; background: var(--sw-cor-sucesso); display: inline-flex; align-items: center; justify-content: center; border-radius: 50%; color: white; font-size: 0.7rem; font-weight: bold; }
+.vermelho { width: 1.2rem; height: 1.2rem; background: var(--sw-cor-alerta); display: inline-flex; align-items: center; justify-content: center; color: white; font-size: 0.7rem; font-weight: bold; }
 
-.vermelho { 
-    width: 1.2rem; 
-    height: 1.2rem; 
-    background: var(--sw-cor-alerta); 
-    display: inline-flex; 
-    align-items: center; 
-    justify-content: center; 
-    color: white; 
-    font-size: 0.7rem; 
-    font-weight: bold; 
+/* =========================================
+   ESTRUTURA E COMPONENTES (Mobile-First)
+========================================= */
+.oculto { display: none !important; }
+.visivel { display: block !important; }
+.limpa-float { clear: both; }
+.img-fluida { max-width: 100%; height: auto; display: block; }
+
+/* Cabeçalho limpo */
+header { border-bottom: 1px solid var(--sw-cor-borda); background-color: #ffffff; }
+.flex-header { display: flex; flex-direction: column; align-items: center; gap: var(--sw-espaco-p); text-align: center; padding: var(--sw-espaco-m) 0; }
+.header-esq { display: flex; flex-direction: column; align-items: center; gap: var(--sw-espaco-p); }
+
+/* Navegação */
+.menu-navegacao { display: flex; flex-direction: column; width: 100%; margin-top: var(--sw-espaco-p); background-color: var(--sw-cor-fundo-rodape); border-bottom: 1px solid var(--sw-cor-borda); }
+.aba { padding: 1rem; font-weight: 500; text-align: center; color: var(--sw-cor-cinza-escuro); transition: all 0.2s ease; border-bottom: 2px solid transparent; }
+.aba:hover { color: var(--sw-cor-primaria); background: transparent; }
+
+main { padding: var(--sw-espaco-p); width: 100%; overflow-x: hidden; }
+
+/* Grids Básicas */
+.grid-layout { display: grid; grid-template-columns: 1fr; gap: var(--sw-espaco-p); margin-bottom: var(--sw-espaco-m); }
+.grid-contato { display: grid; grid-template-columns: 1fr; gap: var(--sw-espaco-m); }
+
+/* Formulários */
+.caixa-pedido { border: 1px solid var(--sw-cor-borda); padding: var(--sw-espaco-m); margin-top: var(--sw-espaco-m); border-radius: 4px; }
+input, textarea, select { border: 1px solid var(--sw-cor-borda); width: 100%; padding: 0.8rem; margin-bottom: var(--sw-espaco-p); border-radius: 4px; font-family: var(--sw-fonte); }
+textarea { min-height: 6.25rem; }
+#busca { max-width: 100%; border-radius: 4px; }
+
+/* =========================================
+   (Catálogo e Filtros)
+========================================= */
+/* Filtros Pílula */
+.links-filtro { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 1.5rem 0; }
+button.link-filtro { border: 1px solid var(--sw-cor-primaria); background: transparent; color: var(--sw-cor-primaria); border-radius: 50px; padding: 0.4rem 1.2rem; font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: all 0.2s; cursor: pointer;}
+button.link-filtro:hover { background-color: var(--sw-cor-primaria); color: #ffffff; }
+
+/* Grelha de Produtos Automática (Responsiva) */
+#catalogo { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 1.5rem; }
+
+/* Cartão de Produto (Flat, Alinhado à esquerda) */
+.card-produto { display: flex; flex-direction: column; text-align: left; border: 1px solid var(--sw-cor-borda); border-radius: 4px; background: #fff; padding: 1rem; transition: box-shadow 0.2s; }
+.card-produto:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.08); }
+.card-produto img { margin: 0 auto 1rem auto; max-height: 120px; object-fit: contain; }
+.card-produto .titulo-produto { font-size: 1.05rem; margin: 0.5rem 0; color: #222; flex-grow: 1; }
+.card-produto .texto-descritivo { font-size: 0.85rem; margin-bottom: 1rem; }
+.card-produto .preco-produto { font-size: 1.3rem; color: var(--sw-cor-primaria); margin-bottom: 1rem; }
+
+/* Botão Azul de Adicionar */
+.card-produto button.btn-adicionar { background-color: var(--sw-cor-primaria); color: white; border: none; border-radius: 4px; width: 100%; padding: 0.8rem; font-weight: 600; margin-top: auto; cursor: pointer; transition: background 0.2s;}
+.card-produto button.btn-adicionar:hover { background-color: var(--sw-cor-secundaria); }
+
+/* =========================================
+   MEDIA QUERIES (Desktops)
+========================================= */
+@media (min-width: 768px) {
+  .flex-header { flex-direction: row; justify-content: space-between; max-width: 68.75rem; margin: 0 auto; min-height: 5.625rem; padding: 0 var(--sw-espaco-m); }
+  .header-esq { flex-direction: row; gap: var(--sw-espaco-m); }
+  .menu-navegacao { flex-direction: row; justify-content: center; gap: 2.5rem; margin-top: 0; padding: 0; }
+  .aba { width: auto; border-bottom: 2px solid transparent; padding: 1rem 0; margin-bottom: -1px;}
+  .aba:hover { border-bottom: 2px solid var(--sw-cor-primaria); }
+  main { max-width: 68.75rem; margin: 0 auto; padding: var(--sw-espaco-m); }
+  .grid-layout { grid-template-columns: 13.75rem 1fr; gap: var(--sw-espaco-m); }
+  .grid-contato { grid-template-columns: 1fr 1fr; }
+  #busca { max-width: 400px; }
 }
 
 /* =========================================
-   ESTRUTURA E COMPONENTES (Passos 4 e 5 - Mobile-First)
+   AJUSTES FINAIS - VISUAL "A EMPRESA" 
 ========================================= */
-.oculto { 
-    display: none !important; 
+
+/* 1. Título Gigante e Texto Descritivo */
+#empresa h1 {
+    font-size: 3rem;
+    line-height: 1.1;
+    font-weight: 700;
+    color: #1a1a1a;
+    max-width: 600px;
+    margin: 1rem 0;
+    letter-spacing: -1px;
 }
 
-.visivel { 
-    display: block !important; 
+#empresa > p, #empresa font[size="2"] {
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 650px;
+    margin-bottom: 2rem;
+    display: inline-block;
 }
 
-.limpa-float { 
-    clear: both; 
+/* 2. Botões Principais da Home (Lado a lado) */
+#empresa .botao {
+    margin-bottom: 2rem;
 }
 
-/* Imagens Responsivas (Garante que o banner do switch não rebenta o ecrã) */
-.img-fluida { 
-    max-width: 100%; 
-    height: auto; 
-    display: block; 
+/* Botão "Ver produtos" (Sólido Azul) */
+#empresa .botao:not(.btn-orcamento) {
+    background-color: var(--sw-cor-primaria);
+    color: white;
+    border: none;
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+}
+#empresa .botao:not(.btn-orcamento):hover {
+    background-color: var(--sw-cor-secundaria);
 }
 
-/* 1. LAYOUT BASE (Celulares / Telas até 360px) */
-/* Tudo em 1 coluna, centralizado para facilitar o toque */
-.flex-header { 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    gap: var(--sw-espaco-p); 
-    text-align: center; 
-    padding: var(--sw-espaco-m) 0; 
+/* Botão "Pedir orçamento" (Vazado com Borda Azul) */
+#empresa .btn-orcamento {
+    background-color: transparent;
+    color: var(--sw-cor-primaria);
+    border: 1px solid var(--sw-cor-primaria);
+    padding: 0.8rem 1.5rem;
+    border-radius: 4px;
+    font-weight: 600;
+}
+#empresa .btn-orcamento:hover {
+    background-color: #f4f8ff;
 }
 
-.header-esq { 
-    display: flex; 
-    flex-direction: column; 
-    align-items: center; 
-    gap: var(--sw-espaco-p); 
+/* 3. Abas de Navegação (Estilo Blocos Cinzentos) */
+.menu-navegacao {
+    background-color: transparent; /* Remove o fundo da barra */
+    border-bottom: none;
+    gap: 0.5rem;
 }
 
-.menu-navegacao { 
-    display: flex; 
-    flex-direction: column; 
-    width: 100%; 
-    margin-top: var(--sw-espaco-p); 
+.aba {
+    background-color: #f5f5f5; /* Fundo cinza claro */
+    border: 1px solid transparent;
+    border-radius: 4px; /* Bordas arredondadas */
+    padding: 0.8rem 1.2rem;
+    color: #555;
 }
 
-.aba { 
-    cursor: pointer; 
-    padding: var(--sw-espaco-p); 
-    font-weight: bold; 
-    text-align: center; 
-    border-bottom: 1px solid var(--sw-cor-borda); 
+.aba:hover, .aba:focus {
+    background-color: #ffffff;
+    border-color: var(--sw-cor-primaria);
+    color: var(--sw-cor-primaria);
 }
 
-main { 
-    padding: var(--sw-espaco-p); 
-    width: 100%; 
-    overflow-x: hidden; 
-} /* overflow-x: hidden evita rolagem horizontal indesejada */
-
-/* Grids Mobile: 1 Coluna */
-.grid-layout { 
-    display: grid; 
-    grid-template-columns: 1fr; 
-    gap: var(--sw-espaco-p); 
-    margin-bottom: var(--sw-espaco-m); 
+/* 4. Botão "Meu Pedido" com contador redondo azul */
+button.link-pedido {
+    background-color: #f5f5f5;
+    padding: 0.6rem 1rem;
+    border-radius: 4px;
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
 }
 
-.grid-produtos-venda { 
-    display: grid; 
-    grid-template-columns: 1fr; 
-    gap: var(--sw-espaco-p); 
-    border: 1px solid var(--sw-cor-cinza-claro); 
-    padding: var(--sw-espaco-p); 
+#qtd {
+    background-color: var(--sw-cor-primaria);
+    color: white;
+    border-radius: 50%;
+    padding: 0.1rem 0.5rem;
+    font-size: 0.8rem;
+    font-weight: bold;
 }
 
-.grid-contato { 
-    display: grid; 
-    grid-template-columns: 1fr; 
-    gap: var(--sw-espaco-m); 
+/* =========================================
+   ÍCONES E LOGO (Cópia fiel do Print)
+========================================= */
+
+/* Fundo suave e arredondado para o ícone */
+.card-produto .img-container {
+    background-color: #f0f4f8; /* Azul bem clarinho e desbotado */
+    border-radius: 6px;
+    padding: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+    height: 120px;
 }
 
-/* Componentes */
-.caixa-pedido { 
-    border: 1px solid var(--sw-cor-borda); 
-    padding: var(--sw-espaco-p); 
-    margin-top: var(--sw-espaco-m); 
-}
-input, textarea, select { 
-    border: 1px solid var(--sw-cor-borda); 
-    width: 100%; 
-    padding: var(--sw-espaco-p); 
-    margin-bottom: var(--sw-espaco-p); 
-    border-radius: 4px; 
+.card-produto .img-container img {
+    max-height: 80px;
+    object-fit: contain;
+    margin: 0;
 }
 
-textarea { 
-    min-height: 6.25rem; 
+/* Espaçamento do logo no cabeçalho */
+.logo-site {
+    transition: transform 0.2s ease;
+}
+.logo-site:hover {
+    transform: scale(1.02);
 }
 
-/* 2. MEDIA QUERIES (Tablets e Desktops - a partir de 768px) */
-@media (min-width: 768px) {
-  /* Expande o cabeçalho para os lados */
-  .flex-header { flex-direction: row;
-     justify-content: space-between; 
-     max-width: 68.75rem; 
-     margin: 0 auto; 
-     min-height: 5.625rem; 
-     padding: 0 var(--sw-espaco-m); 
-    }
+/* 1. Cabeçalho e Botão Meu Pedido */
+.flex-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    border-bottom: none;
+}
 
-  .header-esq { flex-direction: row; 
-    gap: var(--sw-espaco-m); }
-  
-  /* Expande o menu para linha horizontal */
-  .menu-navegacao { flex-direction: row; 
-    justify-content: center; 
-    gap: var(--sw-espaco-m); 
-    margin-top: var(--sw-espaco-m); }
+.logo-site {
+    height: 100px; 
+    transition: transform 0.2s ease;
+}
 
-    .aba { width: auto; 
-        border-bottom: none; }
-  
-  main { max-width: 68.75rem; 
-    margin: 0 auto; 
-    padding: var(--sw-espaco-m); }
-  
-  /* Expande as Grids para múltiplas colunas */
-  .grid-layout { grid-template-columns: 13.75rem 1fr; 
-    gap: var(--sw-espaco-m); }
+.btn-meu-pedido {
+    border: 1px solid #1a1a1a;
+    background: transparent;
+    border-radius: 20px; /* Formato Pílula */
+    padding: 0.5rem 1.2rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #1a1a1a;
+}
 
-  .grid-produtos-venda { grid-template-columns: repeat(3, 1fr); 
-    gap: var(--sw-espaco-m); 
-    padding: var(--sw-espaco-m); }
-    
-  .grid-contato { grid-template-columns: 1fr 1fr; }
+/* 2. Menu de Navegação (Abas cinzentas) */
+.menu-navegacao {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    max-width: 1000px;
+    margin: 0 auto 4rem auto;
+    border-bottom: none;
+    background: transparent;
+}
+
+button.aba {
+    background-color: #e5e7eb; /* Fundo cinza */
+    color: #1f2937;
+    border: none;
+    border-radius: 4px;
+    padding: 0.8rem 2.5rem;
+    font-weight: 500;
+}
+
+button.aba:hover, button.aba.ativa {
+    background-color: #d1d5db;
+    border-bottom: none;
+}
+
+/* 3. Títulos da Home */
+#empresa {
+    text-align: center; /* Centraliza tudo como na imagem */
+}
+
+.titulo-gigante {
+    font-size: 3.5rem;
+    line-height: 1.1;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 1.5rem;
+    letter-spacing: -1px;
+}
+
+.subtitulo-gigante {
+    font-size: 1.1rem;
+    color: #4b5563;
+    max-width: 700px;
+    margin: 0 auto 2.5rem auto;
+    line-height: 1.6;
+}
+
+/* 4. Botões de Ação Centralizados */
+.grupo-botoes {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+}
+
+button.btn-solido {
+    background-color: #0b4a7a;
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    font-weight: 600;
+}
+
+button.btn-vazado {
+    background-color: transparent;
+    color: #111827;
+    border: 1px solid #111827;
+    padding: 0.8rem 2rem;
+    border-radius: 25px;
+    font-weight: 600;
+}
+
+/* 5. Painel do Switch */
+.img-switch-home {
+    background-color: transparent; /* Fundo escuro removido */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 4rem;
+    padding: 2rem 0; /* Apenas um respiro em cima e em baixo */
+}
+
+.img-switch-home img {
+    max-height: 400px; /* Mantém a imagem grande e em destaque */
+    max-width: 1000px;
+    width: 100%;
+    object-fit: contain;
 }

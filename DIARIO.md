@@ -1,3 +1,4 @@
+# Autor: Allan Lima Ramalheira - FATESE - Curso: Análise e Desenvolvimento de Sistemas - Turma: 2026.15.11
 # Diário de Bordo - Resgate da SmartWeb
 
 | Nº | Data | Sintoma observado | Causa encontrada | Seção da apostila | O que foi feito | Commit | Responsável |
@@ -86,3 +87,11 @@ Etapa 6 transformou um site visualmente funcional num produto digital inclusivo.
 ### Reflexão da Etapa 7
 
 A Etapa 7 foi o selo de qualidade profissional neste projeto. A principal lição foi compreender que um código funcionar não significa que esteja correto ou seguro. A remoção de atributos *inline* como `onclick` em favor da Delegação de Eventos (`addEventListener` num contentor pai) deixou a marcação HTML muito mais limpa e a memória do navegador mais leve. A prevenção contra ataques XSS (Cross-Site Scripting), sanitizando os *inputs* antes de usar o `innerHTML`, demonstrou a importância da regra de ouro da web: "nunca confies nos dados inseridos pelo utilizador". Com variáveis devidamente escopadas (`const/let`), comparações estritas (`===`), APIs modernas e separação clara entre Dados, UI e Eventos, o JavaScript da SmartWeb está agora seguro, modular e pronto para escalar.
+
+### Reflexão da Etapa 8: Verificação Final e Conclusão
+
+A Etapa 8 marcou a consolidação e o refinamento final do projeto SmartWeb. O processo de separação dos arquivos em camadas independentes (HTML, CSS e JS) reforçou a importância da organização e da arquitetura limpa (*Separation of Concerns*) no desenvolvimento front-end.
+
+O momento mais gratificante desta etapa foi comprovar, através de dados reais, a evolução técnica do site. Eliminar os 46 erros estruturais do código original e alcançar a validação perfeita (0 erros) no W3C, atrelado ao salto para a nota máxima (100/100) em Acessibilidade no Lighthouse, demonstrou o poder de um código semântico e Mobile-First. Além disso, a modernização da interface para um *Flat Design* — mantendo o contraste adequado e a navegação completa por teclado — provou que é possível criar um visual altamente profissional e moderno sem sacrificar a inclusão (WCAG).
+
+Concluo este desafio com a certeza de que o bom desenvolvimento web vai muito além do que o usuário vê na tela: trata-se da robustez, performance e acessibilidade do código que sustenta a experiência.
